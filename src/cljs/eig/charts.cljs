@@ -15,7 +15,7 @@
   (let [lmap  (.setView (.map js/L "map") #js [48.8503 2.30831] 7)
         items admins_locations]
     (.addTo (.tileLayer
-             js/L "https://{s}.tiles.mapbox.com/v3/bzg.i8bb9pdk/{z}/{x}/{y}.png"
+             js/L "http://{s}.tiles.mapbox.com/v3/bzg.i8bb9pdk/{z}/{x}/{y}.png"
              (clj->js {:attribution "Map data &copy; [...]" :maxZoom 18}))
             lmap)
     (doseq [{:keys [lat lon admin eig2017 eig2018 eig2019]} items]
