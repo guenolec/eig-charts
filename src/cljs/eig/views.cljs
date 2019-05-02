@@ -5,6 +5,7 @@
             [accountant.core :as accountant]
             [antizer.reagent :as ant]
             [eig.subs :as subs]
+            [eig.report :as report]
             [eig.events :as events]
             [cljsjs.moment]
             [cljsjs.moment.locale.fr]
