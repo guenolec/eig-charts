@@ -94,7 +94,8 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "line"
-         :options {:title {:display "true" :text "3 promotions EIG"}}
+         :options {:title    {:display "true" :text "3 promotions EIG"}
+                   :elements {:line {:tension 0}}}
          :data    {:labels   ["2017" "2018" "2019" "Totaux"]
                    :datasets [{:data             (conj (get report/programme "Nombre d'EIG")
                                                        (get promotion-totaux 0))
@@ -102,7 +103,7 @@
                                :pointRadius      10
                                :pointHoverRadius 15
                                :backgroundColor  "#234567"
-                               :fill             nil}
+                               :fill             "boundary"}
                               {:data             (conj (get report/programme "Nombre de mentors")
                                                        (get promotion-totaux 1))
                                :label            "Nombre de mentors"
