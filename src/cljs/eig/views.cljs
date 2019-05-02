@@ -5,34 +5,15 @@
             [accountant.core :as accountant]
             [antizer.reagent :as ant]
             [eig.subs :as subs]
+            [eig.charts :as charts]
             [eig.report :as report]
             [eig.events :as events]
             [cljsjs.moment]
-            [cljsjs.moment.locale.fr]
-            [cljsjs.chartjs]))
-
-(defn show-revenue-chart []
-  (let [context    (.getContext (.getElementById js/document "rev-chartjs") "2d")
-        chart-data {:type "bar"
-                    :data {:labels   ["2017" "2018" "2019"]
-                           :datasets [{:data            [5 10 1]
-                                       :label           "This is something"
-                                       :backgroundColor "#234567"}
-                                      {:data            [3 6 9]
-                                       :label           "And something else entirely"
-                                       :backgroundColor "#245312"}]}}]
-    (js/Chart. context (clj->js chart-data))))
-
-(defn rev-chartjs-component
-  []
-  (r/create-class
-   {:component-did-mount #(show-revenue-chart)
-    :display-name        "chartjs-component"
-    :reagent-render      (fn [] [:canvas {:id "rev-chartjs"}])})) 
+            [cljsjs.moment.locale.fr]))
 
 (defn display-chart []
   [ant/layout-content {:class "content-area"}
-   [rev-chartjs-component]])
+   [charts/chartjs-component]])
 
 (defn layout-content-view [view-name]
   (case view-name
