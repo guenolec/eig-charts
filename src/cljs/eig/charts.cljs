@@ -96,21 +96,27 @@
         {:type    "line"
          :options {:title {:display "true" :text "3 promotions EIG"}}
          :data    {:labels   ["2017" "2018" "2019" "Totaux"]
-                   :datasets [{:data            (conj (get report/programme "Nombre d'EIG")
-                                                      (get promotion-totaux 0))
-                               :label           "Nombre d'EIG"
-                               :backgroundColor "#234567"
-                               :fill            nil}
-                              {:data            (conj (get report/programme "Nombre de mentors")
-                                                      (get promotion-totaux 1))
-                               :label           "Nombre de mentors"
-                               :backgroundColor "#245312"
-                               :fill            nil}
-                              {:data            (conj (get report/programme "Nombre de défis")
-                                                      (get promotion-totaux 2))
-                               :label           "Nombre de défis"
-                               :backgroundColor "red"
-                               :fill            nil}]}}]
+                   :datasets [{:data             (conj (get report/programme "Nombre d'EIG")
+                                                       (get promotion-totaux 0))
+                               :label            "Nombre d'EIG"
+                               :pointRadius      10
+                               :pointHoverRadius 15
+                               :backgroundColor  "#234567"
+                               :fill             nil}
+                              {:data             (conj (get report/programme "Nombre de mentors")
+                                                       (get promotion-totaux 1))
+                               :label            "Nombre de mentors"
+                               :pointRadius      10
+                               :pointHoverRadius 15
+                               :backgroundColor  "#245312"
+                               :fill             nil}
+                              {:data             (conj (get report/programme "Nombre de défis")
+                                                       (get promotion-totaux 2))
+                               :label            "Nombre de défis"
+                               :backgroundColor  "red"
+                               :pointRadius      10
+                               :pointHoverRadius 15
+                               :fill             nil}]}}]
     (js/Chart. context (clj->js chart-data))))
 
 (defn chartjs-promo
