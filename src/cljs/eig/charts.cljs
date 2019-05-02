@@ -32,26 +32,45 @@
   (r/create-class {:reagent-render      map-render
                    :component-did-mount map-did-mount}))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(def financement-keys
+  ["Enveloppe maximale allouée par le PIA"
+   "Salaires pris en charge par PIA"
+   "Coût total salaires EIG"])
+
+(def financement-cout
+  (select-keys report/financement financement-keys))
+
+(def financement-2017
+  (map #(get (val %) 0) financement-cout))
+(def financement-2018
+  (map #(get (val %) 1) financement-cout))
+(def financement-2019
+  (map #(get (val %) 2) financement-cout))
+
+(def financement-total
+  (map (fn [a b c] (+ a b c))
+       financement-2017 financement-2018 financement-2019))
+
 (defn financement []
-  (let [context    (.getContext (.getElementById js/document "chartjs") "2d")
-        chart-data {:type "bar"
-                    :data {:labels   ["2017" "2018" "2018 (réel)" "2019"]
-                           :datasets [{:data            [800000.00 2500000.00 0 1500000.00]
-                                       :label           "Enveloppe maximale allouée par le PIA"
-                                       :backgroundColor "#234567"}
-                                      {:data            [688702.68 1735000.00 1600984.00 1167560.00]
-                                       :label           "Salaires pris en charge par PIA"
-                                       :backgroundColor "#245312"}
-                                      {:data            [756553.38 1935342.00 1801326.00 2100364.09]
-                                       :label           "Coût total salaires EIG"
-                                       :backgroundColor "red"}
-                                      {:data            [4800000.0 3591262.68 456624.00 744372.79]
-                                       :label           "Totaux"
-                                       :backgroundColor "green"}
-                                      ]}}]
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type "bar"
+         :data {:labels   financement-keys
+                :datasets [{:data            financement-2017
+                            :label           "2017"
+                            :backgroundColor "#234567"}
+                           {:data            financement-2018
+                            :label           "2018"
+                            :backgroundColor "#245312"}
+                           {:data            financement-2019
+                            :label           "2019"
+                            :backgroundColor "red"}
+                           {:data            financement-total
+                            :label           "Totaux"
+                            :backgroundColor "green"}
+                           ]}}]
     (js/Chart. context (clj->js chart-data))))
 
 (defn chartjs-financement

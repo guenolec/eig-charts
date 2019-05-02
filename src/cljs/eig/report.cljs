@@ -6,83 +6,65 @@
     {:admin "Direction Interministérielle à l'accueil et à l'intégration des réfugiés" :eig2019 1 :lon 48.8491 :lat 2.40674}
     {:admin "Mission de gouvernance ministérielle des SIC" :eig2017 2 :eig2018 1 :lon 48.8305 :lat 2.38702}
     {:admin "En partenariat avec l'ANTAI" :eig2019 1 :lon 48.1133 :lat -1.71577}]
-
    "Ministère des Armées"
    [{:admin "Service Hydrographique et Océanographique de la Marine" :eig2018 1 :lon 48.4095 :lat -4.50673}]
-
    "Ministère de l'Éducation Nationale"
    [{:admin "Numérilab de l'Education Nationale" :eig2018 1 :lon 48.8572 :lat 2.31844}]
-
    "Ministère de l'Enseignement Supérieur, de la Recherche et de l'Innovation"
    [{:admin "Ministère de l'Enseignement Supérieur, de la Recherche et de l'Innovation" :eig2017 1 :eig2018 1 :lon 48.8478 :lat 2.34861}]
-
    "Direction interministérielle du Numérique et du Système d'Information et de Communication"
    [{:admin "DINSIC" :eig2018 1 :eig2019 1 :lon 48.8503 :lat 2.30831} ;; FIXME: eig2019 = 2 ?
     {:admin "En partenariat avec l'Assemblée Nationale" :eig2019 1 :lon 48.8608 :lat 2.31858}]
-
    "Ministère de la Culture"
    [{:admin "Bibliothèque Nationale de France" :eig2017 1 :lon 48.8335 :lat 2.37576}
     {:admin "En partenariat avec Orgues en France" :eig2017 1 :lon 48.8624 :lat 2.33889}
     {:admin "En partenariat avec le Mobilier National" :eig2018 1 :lon 48.8333 :lat 2.35120}]
-
    "Ministère de la Cohésion des Territoires"
    [{:admin "Commisariat Général à l'Egalité des Territoires" :eig2018 1 :lon 48.8507 :lat 2.30835}]
-
    "Ministère de l'Economie, des Finances, de l'Action et des Comptes Publics"
    [{:admin "Ministère de l'Action et des Comptes Publics" :eig2018 1 :eig2019 1 :lon 48.8501 :lat 2.42112}
     {:admin "Ministère de l'Economie et des Finances" :eig2018 1 :lon 48.841 :lat 2.37797}
     {:admin "Direction Générale des Finances Publiques" :eig2017 1 :lon 48.841 :lat 2.37797}
     {:admin "Direction générale de la concurrence, de la consommation et de la répression des fraudes" :eig2019 1 :lon 48.8351 :lat 2.36915}]
-
    "Ministère de la Transition Ecologique et Solidaire"
    [{:admin "Direction des Affaires Maritimes" :eig2018 1 :eig2019 1 :lon 48.8939 :lat 2.23965}]
-
    "Ministère de la Justice"
    [{:admin "Direction des affaires civiles et du sceau" :eig2019 1 :lon 48.8678 :lat 2.32874}]
-
    "Cour des Comptes"
    [{:admin "Cour des Comptes" :eig2017 1 :eig2019 1 :lon 48.8669 :lat 2.32569}]
-
    "Ministère de la Santé"
    [{:admin "Direction de la recherche, des études, de l’évaluation et des statistiques" :eig2018 1 :eig2019 1 :lon 48.8385 :lat 2.31763}]
-
    "Secrétariat Général des Ministères Sociaux"
    [{:admin "Secrétariat Général des Ministères Sociaux" :eig2018 1 :lon 48.8521 :lat 2.30908}
     {:admin "En partenariat avec l'ARS Occitanie" :eig2017 1 :lon 43.60806 :lat 3.918406}]
-
    "Cour de Cassation"
    [{:admin "Service de documentation, des études et du rapport (SDER)" :eig2019 1 :lon 48.8543446 :lat 2.3448946}]
-
    "Ministère du Travail"
    [{:admin "Direction Générale du Travail" :eig2019 1 :lon 48.8468 :lat 2.27908}]
-
    "Groupement d'Intérêt Public"
    [{:admin "Agence Française pour le Développement et la Promotion de l'Agriculture Biologique" :eig2019 1 :lon 48.8536727 :lat 2.4186221}]
-
    "Établissement public à caractère industriel et commercial"
    [{:admin "Agence Française de Développement" :eig2017 1 :lon 48.8438 :lat 2.37905}]
-
    "Établissement à caractère administratif"
    [{:admin "Agence centrale des organismes de sécurité sociale" :eig2019 1 :lon 48.8510153 :lat 2.4208701}]
-
    "Autorité Administratives Indépendantes"
    [{:admin "Autorité de régulation des communications électroniques et des postes" :eig2019 1 :lon 48.8358 :lat 2.38847}]})
 
 (def financement
-  {"Enveloppe maximale allouée par le PIA"                                         [800000.00 2500000.00 0 1500000.00]
-   "Salaires pris en charge par PIA"                                               [688702.68 1735000.00 1600984.00 1167560.00]    
-   "Salaires pris en charge par les administrations bénéficiant de co-financement" [0 0 0 456624.00]
-   "Salaires pour les défis auto-financés"                                         [67850.70 200342.00 200342.00 476180.09]
-   ;; "Coût total salaires EIG"                                                       [756553.38 1935342.00 1801326.00 2100364.09]
-   "Accompagnement et mentoring"                                                   [0 75000.00 34808.00 50000.00]    
-   "Environnement technique"                                                       [0 50000.00 2298.00 20000.00]
-   "Communication"                                                                 [0 75000.00 74209.00 80000.00]
-   "Hébergement par un tiers-lieu"                                                 [0 200000.00 0 75000.00]
-   "Développement et amélioration"                                                 [0 0 0 75000.00]
-   ;; "Coût total accompagnement"                                                     [0 400000.00 111315.00 300000.00]
-   "Liens avec la recherche"                                                       [10000.00 30000.00 0 30000.00]
-   ;; "Total recherche"                                                               [10000.00 30000.00 0 30000.00]
-   ;; "Coût total du programme"                                                       [766553.38 2365342.00 1912641.00 2430364.09]
+  {"Enveloppe maximale allouée par le PIA"                                         [800000.00 2500000.00 1500000.00]
+   "Salaires pris en charge par PIA"                                               [688702.68 1735000.00 1167560.00]    
+   "Salaires pris en charge par les administrations bénéficiant de co-financement" [0 0 456624.00]
+   "Salaires pour les défis auto-financés"                                         [67850.70 200342.00 476180.09]
+   "Coût total salaires EIG"                                                       [756553.38 1935342.00 2100364.09]
+   "Accompagnement et mentoring"                                                   [0 75000.00 50000.00]    
+   "Environnement technique"                                                       [0 50000.00 20000.00]
+   "Communication"                                                                 [0 75000.00 80000.00]
+   "Hébergement par un tiers-lieu"                                                 [0 200000.00 75000.00]
+   "Développement et amélioration"                                                 [0 0 75000.00]
+   "Coût total accompagnement"                                                     [0 400000.00 300000.00]
+   "Liens avec la recherche"                                                       [10000.00 30000.00 30000.00]
+   "Total recherche"                                                               [10000.00 30000.00 30000.00]
+   "Coût total du programme"                                                       [766553.38 2365342.00 2430364.09]
    "Part des salaires dans le coût total du programme"                             [98.70 81.82 94.18 86.42]   
    "Part de la recherche dans le coût total du programme"                          [1.30 1.27 0.00 1.23]   
    "Part du programme d'accompagnement dans le coût total du programme"            [0.00 16.91 5.82 12.34]   
