@@ -15,8 +15,10 @@
   (let [lmap  (.setView (.map js/L "map") #js [48.8503 2.30831] 7)
         items admins_locations]
     (.addTo (.tileLayer
-             js/L "http://{s}.tiles.mapbox.com/v3/bzg.i8bb9pdk/{z}/{x}/{y}.png"
-             (clj->js {:attribution "Map data &copy; [...]" :maxZoom 18}))
+             js/L "https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
+             (clj->js {:attribution
+                       "&copy; Openstreetmap France | &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+                       :maxZoom 18}))
             lmap)
     (doseq [{:keys [lat lon admin eig2017 eig2018 eig2019]} items]
       (.addTo (.bindPopup (.marker js/L (clj->js
