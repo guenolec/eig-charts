@@ -56,27 +56,67 @@
 (defn financement []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
-        {:type "bar"
-         :data {:labels   financement-keys
-                :datasets [{:data            financement-2017
-                            :label           "2017"
-                            :backgroundColor "#234567"}
-                           {:data            financement-2018
-                            :label           "2018"
-                            :backgroundColor "#245312"}
-                           {:data            financement-2019
-                            :label           "2019"
-                            :backgroundColor "red"}
-                           {:data            financement-total
-                            :label           "Totaux"
-                            :backgroundColor "green"}
-                           ]}}]
+        {:type    "bar"
+         :options {:title {:display "true" :text "Financement du programme EIG"}}
+         :data    {:labels   financement-keys
+                   :datasets [{:data            financement-2017
+                               :label           "2017"
+                               :backgroundColor "#234567"}
+                              {:data            financement-2018
+                               :label           "2018"
+                               :backgroundColor "#245312"}
+                              {:data            financement-2019
+                               :label           "2019"
+                               :backgroundColor "red"}
+                              {:data            financement-total
+                               :label           "Totaux"
+                               :backgroundColor "green"}
+                              ]}}]
     (js/Chart. context (clj->js chart-data))))
 
 (defn chartjs-financement
   []
   (r/create-class
    {:component-did-mount #(financement)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def promotion-totaux
+  (into
+   []
+   (map (fn [[a b c]] (+ a b c))
+        (vals (select-keys report/programme
+                           ["Nombre d'EIG" "Nombre de mentors" "Nombre de défis"])))))
+
+(defn promotion []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "line"
+         :options {:title {:display "true" :text "3 promotions EIG"}}
+         :data    {:labels   ["2017" "2018" "2019" "Totaux"]
+                   :datasets [{:data            (conj (get report/programme "Nombre d'EIG")
+                                                      (get promotion-totaux 0))
+                               :label           "Nombre d'EIG"
+                               :backgroundColor "#234567"
+                               :fill            nil}
+                              {:data            (conj (get report/programme "Nombre de mentors")
+                                                      (get promotion-totaux 1))
+                               :label           "Nombre de mentors"
+                               :backgroundColor "#245312"
+                               :fill            nil}
+                              {:data            (conj (get report/programme "Nombre de défis")
+                                                      (get promotion-totaux 2))
+                               :label           "Nombre de défis"
+                               :backgroundColor "red"
+                               :fill            nil}]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-promo
+  []
+  (r/create-class
+   {:component-did-mount #(promotion)
     :display-name        "chartjs-component"
     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
