@@ -17,7 +17,7 @@
    [{:admin "Ministère de l'Enseignement Supérieur, de la Recherche et de l'Innovation" :eig2017 1 :eig2018 1 :lon 48.8478 :lat 2.34861}]
 
    "Direction interministérielle du Numérique et du Système d'Information et de Communication"
-   [{:admin "DINSIC" :eig2018 1 :eig2019 1 :lon 48.8503 :lat 2.30831}
+   [{:admin "DINSIC" :eig2018 1 :eig2019 1 :lon 48.8503 :lat 2.30831} ;; FIXME: eig2019 = 2 ?
     {:admin "En partenariat avec l'Assemblée Nationale" :eig2019 1 :lon 48.8608 :lat 2.31858}]
 
    "Ministère de la Culture"
@@ -26,7 +26,7 @@
     {:admin "En partenariat avec le Mobilier National" :eig2018 1 :lon 48.8333 :lat 2.35120}]
 
    "Ministère de la Cohésion des Territoires"
-   [{:admin "Commisariat Général à l'Egalité des Territoires" :lon 48.8503 :lat 2.30831}]
+   [{:admin "Commisariat Général à l'Egalité des Territoires" :eig2018 1 :lon 48.8507 :lat 2.30835}]
 
    "Ministère de l'Economie, des Finances, de l'Action et des Comptes Publics"
    [{:admin "Ministère de l'Action et des Comptes Publics" :eig2018 1 :eig2019 1 :lon 48.8501 :lat 2.42112}

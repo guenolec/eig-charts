@@ -12,7 +12,7 @@
   (flatten (vals report/administrations_map)))
 
 (defn map-did-mount []
-  (let [lmap  (.setView (.map js/L "map") #js [48.29716 4.074626] 7)
+  (let [lmap  (.setView (.map js/L "map") #js [48.8503 2.30831] 7)
         items admins_locations]
     (.addTo (.tileLayer
              js/L "http://{s}.tiles.mapbox.com/v3/bzg.i8bb9pdk/{z}/{x}/{y}.png"
@@ -22,12 +22,16 @@
       (.addTo (.bindPopup (.marker js/L (clj->js
                                          (vector (js/parseFloat lon)
                                                  (js/parseFloat lat))))
-                          (str "<h2>" admin "</h2><p>EIG: " (+ eig2017 eig2018 eig2019) "</p>"))
+                          (str "<h2>" admin "</h2>"
+                               "<p>2017: " (or eig2017 0) " EIG </p>"
+                               "2018: " (or eig2018 0) " EIG </p>"
+                               "2019: " (or eig2019 0) " EIG </p>"))
               lmap))))
 
 (defn chartjs-map []
   (r/create-class {:reagent-render      map-render
                    :component-did-mount map-did-mount}))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

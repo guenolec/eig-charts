@@ -15,14 +15,14 @@
   [ant/layout-content {:class "content-area"}
    (case view-name
      "test"        [charts/chartjs-test]
-     "carte"         [charts/chartjs-map]
+     "carte"       [charts/chartjs-map]
      "financement" [charts/chartjs-financement])])
 
 (defn side-menu []
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
              :on-click (fn [e] (re-frame/dispatch [::events/set-view! (.-key e)]))}
    [ant/menu-item {:key "test"} "Test"]
-   [ant/menu-item {:key "carte"} "carte"]
+   [ant/menu-item {:key "carte"} "Carte"]
    [ant/menu-item {:key "financement"} "Financement"]])
 
 (defn main-panel []
