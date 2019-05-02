@@ -9,7 +9,6 @@
             [eig.events :as events]
             [cljsjs.moment]
             [cljsjs.moment.locale.fr]
-            [goog.labs.format.csv :as csv]
             [cljsjs.chartjs]))
 
 (defn show-revenue-chart []
