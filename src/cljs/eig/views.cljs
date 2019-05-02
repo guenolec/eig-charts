@@ -11,25 +11,19 @@
             [cljsjs.moment]
             [cljsjs.moment.locale.fr]))
 
-(defn display-chart []
-  [ant/layout-content {:class "content-area"}
-   [charts/chartjs-component]])
-
 (defn layout-content-view [view-name]
-  (case view-name
-    :chart [display-chart]))
+  [ant/layout-content {:class "content-area"}
+   (case view-name
+     "test"        [charts/chartjs-test]
+     "carte"         [charts/chartjs-map]
+     "financement" [charts/chartjs-financement])])
 
 (defn side-menu []
-  [ant/menu {:mode "inline" :theme "dark" :style {:height "100%"}}
-   [ant/menu-item "Menu Item"]
-   [ant/menu-sub-menu {:title "Sub Menu"}
-    [ant/menu-item "Item 1"]
-    [ant/menu-item "Item 2"]]
-   [ant/menu-item {:disabled true} "Menu with Icons"]
-   [ant/menu-item (r/as-element [:span [ant/icon {:type "home"}] "Menu Item"])]
-   [ant/menu-sub-menu {:title (r/as-element [:span [ant/icon {:type "setting"}] "Sub Menu"])}
-    [ant/menu-item (r/as-element [:span [ant/icon {:type "user"}] "Item 1"])]
-    [ant/menu-item (r/as-element [:span [ant/icon {:type "notification"}] "Item 2"])]]])
+  [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
+             :on-click (fn [e] (re-frame/dispatch [::events/set-view! (.-key e)]))}
+   [ant/menu-item {:key "test"} "Test"]
+   [ant/menu-item {:key "carte"} "carte"]
+   [ant/menu-item {:key "financement"} "Financement"]])
 
 (defn main-panel []
   [ant/locale-provider {:locale (ant/locales "fr_FR")}

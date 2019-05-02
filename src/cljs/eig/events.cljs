@@ -7,3 +7,7 @@
  (fn [_ _]
    db/default-db))
 
+(re-frame/reg-event-db
+ ::set-view!
+ (fn [db [_ view]]
+   (assoc db :view view)))

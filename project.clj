@@ -5,6 +5,7 @@
             :url  "http://www.eclipse.org/legal/epl-v20.html"}
   :dependencies [[antizer "0.3.1"]
                  [cljsjs/moment "2.24.0-0"]
+                 [cljsjs/leaflet "1.4.0-0"]
                  [hiccup "1.0.5"]
                  [org.clojure/clojure "1.10.0"]
                  [org.clojure/clojurescript "1.10.520"]
@@ -43,6 +44,7 @@
     {:id           "min"
      :source-paths ["src/cljs"]
      :compiler     {:main            eig.core
+                    :externs         ["externs.js"]
                     :output-to       "resources/public/js/compiled/app.js"
                     :optimizations   :advanced
                     :closure-defines {goog.DEBUG false}
