@@ -17,6 +17,7 @@
      "test"        [charts/chartjs-test]
      "carte"       [charts/chartjs-map]
      "promo"       [charts/chartjs-promo]
+     "eig2017"     [charts/chartjs-eig2017]
      "financement" [charts/chartjs-financement])])
 
 (defn side-menu []
@@ -25,6 +26,7 @@
    [ant/menu-item {:key "test"} "Test"]
    [ant/menu-item {:key "carte"} "Carte"]
    [ant/menu-item {:key "promo"} "Promotions EIG"]
+   [ant/menu-item {:key "eig2017"} "EIG 2017"]
    [ant/menu-item {:key "financement"} "Financement"]])
 
 (defn main-panel []

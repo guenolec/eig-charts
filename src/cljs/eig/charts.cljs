@@ -129,6 +129,38 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(def eig-keys ["Part des salaires pris en charge par le PIA"
+               "Part des défis autofinancés dans le total des salaires"
+               "Part prise en charge par les administrations en co-financement"])
+
+(defn eig2017 []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "pie"
+         :options {:title {:display "true" :text "EIG 2017"}}
+         :data    {:labels   eig-keys
+                   :datasets [{:data            (map first (vals (select-keys
+                                                                  report/financement
+                                                                  eig-keys)))
+                               :label           "EIG 1 - 2017"
+                               :backgroundColor ["#234567" "#123445" "#652323"]}
+                              ;; {:data            (map second (vals (select-keys
+                              ;;                                      report/financement
+                              ;;                                      eig-keys)))
+                              ;;  :label           "EIG 1 - 2018"
+                              ;;  :backgroundColor ["yellow" "red" "green"]}
+                              ]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-eig2017
+  []
+  (r/create-class
+   {:component-did-mount #(eig2017)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defn test-chart []
   (let [context    (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data {:type "bar"
