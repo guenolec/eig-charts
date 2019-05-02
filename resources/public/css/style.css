@@ -1,7 +1,6 @@
 html, body {
-    font-size: 16px;
-    font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
     margin:0;
+    padding:0;
 }
 
 .container {
@@ -9,46 +8,6 @@ html, body {
     margin: auto;
 }
 
-/* .banner { */
-/*     color: #fff; */
-/*     background-color: #108ee9; */
-/* } */
-
-/* .ant-btn { */
-/*     font-size: 18px; */
-/*     height: 2.4em; */
-/*     padding: .7em; */
-/*     /\* width: 6em; *\/ */
-/*     /\* margin: 1em; *\/ */
-/* } */
-
 .content-area {
-    /* max-height: 400px; */
-    width: 100%;
-    margin: auto;
     background: #fff;
-    /* margin: 20px 20px; */
-    /* padding: 20px 20px; */
 }
-
-/* .ant-table { */
-/*     font-size: 14px; */
-/* } */
-
-/* .ant-layout-header { */
-/*     font-size: 16px; */
-/*     width: 100%; */
-/*     margin: auto; */
-/* } */
-
-/* .ant-layout-footer { */
-/*     font-size: 14px; */
-/*     width: 80%; */
-/*     margin: auto; */
-/* } */
-
-/* .ant-input { */
-/*     font-size: 16px; */
-/*     padding: 1.2em; */
-/* } */
-
