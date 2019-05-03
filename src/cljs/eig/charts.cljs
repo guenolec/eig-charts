@@ -302,7 +302,7 @@
                                :backgroundColor color/orange}
                               {:data            accompagnement-totaux
                                :label           "Totaux"
-                               :backgroundColor color/grey}
+                               :backgroundColor color/dark-grey}
                               ]}}]
     (js/Chart. context (clj->js chart-data))))
 
