@@ -28,7 +28,6 @@
 (defn side-menu []
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
              :on-click (fn [e] (re-frame/dispatch [::events/set-view! (.-key e)]))}
-   [ant/menu-item {:key "carte"} "Carte"]
    [ant/menu-item {:key "promo"} "Promotions EIG"]
    [ant/menu-sub-menu {:title "Salaires"}
     [ant/menu-item {:key "eig2017"} "EIG 2017"]
@@ -38,12 +37,20 @@
    [ant/menu-item {:key "financement"} "Financement"]
    [ant/menu-item {:key "depenses"} "Dépenses"]
    [ant/menu-item {:key "accompagnement"} "Accompagnement"]
-   [ant/menu-item {:key "communication"} "Communication"]])
+   [ant/menu-item {:key "communication"} "Communication"]
+   [ant/menu-item {:key "carte"} "Carte des défis"]])
 
 (defn main-panel []
   [ant/locale-provider {:locale (ant/locales "fr_FR")}
    [ant/layout
     [ant/layout-sider [side-menu]]
-    [ant/layout-content {:style {:padding "50px 50px" :width "85%" :margin "auto"}}
+    [ant/layout-content {:style {:padding "20px 20px" :margin "auto"}}
      [layout-content-view @(re-frame/subscribe [::subs/view])]
-     [ant/layout-footer [:p "Pied de page."]]]]])
+     [ant/layout-footer
+      [:p
+       "Auteur: "
+       [:a {:href "https://entrepreneur-interet-general.etalab.gouv.fr/"} "Entrepreneur d'intérêt général"]
+       " - "
+       [:a {:href "https://www.etalab.gouv.fr"} "Etalab"]
+       " / "
+       [:a {:href "https://www.numerique.gouv.fr/"} "DINSIC"]]]]]])

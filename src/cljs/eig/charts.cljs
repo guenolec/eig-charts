@@ -7,7 +7,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn map-render []
-  [:div#map {:style {:height "800px"}}])
+  [:div#map {:style {:height "700px"}}])
 
 (def admins_locations
   (flatten (vals report/administrations_map)))
@@ -60,7 +60,8 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title {:display "true" :text "Financement du programme EIG"}}
+         :options {:title      {:display "true" :text "Financement du programme EIG"}
+                   :responsive "true"}
          :data    {:labels   financement-keys
                    :datasets [{:data            financement-2017
                                :label           "2017"
@@ -97,8 +98,9 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "line"
-         :options {:title    {:display "true" :text "3 promotions EIG"}
-                   :elements {:line {:tension 0}}}
+         :options {:title      {:display "true" :text "3 promotions EIG"}
+                   :elements   {:line {:tension 0}}
+                   :responsive "true"}
          :data    {:labels   ["2017" "2018" "2019" "Totaux"]
                    :datasets [{:data             (conj (get report/programme "Nombre d'EIG")
                                                        (get promotion-totaux 0))
@@ -143,7 +145,8 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "pie"
-         :options {:title {:display "true" :text "EIG 2017"}}
+         :options {:title      {:display "true" :text "EIG 2017"}
+                   :responsive "true"}
          :data    {:labels   eig-keys
                    :datasets [{:data            (map first eig-parts)
                                :label           "EIG 1 - 2017"
@@ -154,7 +157,8 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "pie"
-         :options {:title {:display "true" :text "EIG 2018"}}
+         :options {:title      {:display "true" :text "EIG 2018"}
+                   :responsive "true"}
          :data    {:labels   eig-keys
                    :datasets [{:data            (map second eig-parts)
                                :label           "EIG 2 - 2018"
@@ -165,7 +169,8 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "pie"
-         :options {:title {:display "true" :text "EIG 2019"}}
+         :options {:title      {:display "true" :text "EIG 2019"}
+                   :responsive "true"}
          :data    {:labels   eig-keys
                    :datasets [{:data            (map #(nth % 2) eig-parts)
                                :label           "EIG 2 - 2019"
@@ -207,9 +212,10 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title  {:display "true" :text "3 profils parmi les EIG"}
-                   :scales {:xAxes [{:stacked true}]
-                            :yAxes [{:stacked true}]}}
+         :options {:title      {:display "true" :text "3 profils parmi les EIG"}
+                   :responsive "true"
+                   :scales     {:xAxes [{:stacked true}]
+                                :yAxes [{:stacked true}]}}
          :data    {:labels   ["EIG 1 - 2017" "EIG 2 - 2018" "EIG 3 - 2019"]
                    :datasets [{:data            (get profils-data 0)
                                :label           "Développeurs"
@@ -244,7 +250,8 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "pie"
-         :options {:title {:display "true" :text "Les dépenses du programme EIG, de 2017 (au centre) à 2019"}}
+         :options {:title      {:display "true" :text "Les dépenses du programme EIG, de 2017 (au centre) à 2019"}
+                   :responsive "true"}
          :data    {:labels   depenses-keys
                    :datasets [{:data            (map #(nth % 2) depenses-data)
                                :label           "2019"
@@ -281,7 +288,8 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title {:display "true" :text "Un programme d'accompagnement"}}
+         :options {:title      {:display "true" :text "Un programme d'accompagnement"}
+                   :responsive "true"}
          :data    {:labels   (keys report/accompagnement)
                    :datasets [{:data            accompagnement-2017
                                :label           "EIG 1 - 2017"
@@ -325,7 +333,8 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title {:display "true" :text "Communication autour du programme"}}
+         :options {:title      {:display "true" :text "Communication autour du programme"}
+                   :responsive "true"}
          :data    {:labels   (keys communication-data)
                    :datasets [{:data            communication-2017
                                :label           "EIG 1 - 2017"
