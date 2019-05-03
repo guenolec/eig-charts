@@ -9,7 +9,7 @@
    "Ministère des Armées"
    [{:admin "Service Hydrographique et Océanographique de la Marine" :eig2018 1 :lon 48.4095 :lat -4.50673}]
    "Ministère de l'Éducation Nationale"
-   [{:admin "Numérilab de l'Education Nationale" :eig2018 1 :lon 48.8572 :lat 2.31844}]
+   [{:admin "Numérilab de l'Education Nationale" :eig2018 1 :lon 48.8572 :lat 2.31844}] ;; FIXME: eig2018 = 2?
    "Ministère de l'Enseignement Supérieur, de la Recherche et de l'Innovation"
    [{:admin "Ministère de l'Enseignement Supérieur, de la Recherche et de l'Innovation" :eig2017 1 :eig2018 1 :lon 48.8478 :lat 2.34861}]
    "Direction interministérielle du Numérique et du Système d'Information et de Communication"
