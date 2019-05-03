@@ -14,8 +14,6 @@
                  [reagent-utils "0.3.2"]
                  [cljsjs/chartjs "2.8.0-0"]]
   :target-path "target/%s"
-  ;; :main eig.server
-  :source-paths ["src/clj"]
   :resource-paths ["resources"]
   :plugins [[lein-cljsbuild "1.1.7"]]
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
