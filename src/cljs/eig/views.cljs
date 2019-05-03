@@ -20,7 +20,8 @@
      "eig2017"     [charts/chartjs-eig2017]
      "eig2018"     [charts/chartjs-eig2018]
      "eig2019"     [charts/chartjs-eig2019]
-     "financement" [charts/chartjs-financement])])
+     "financement" [charts/chartjs-financement]
+     "depenses"    [charts/chartjs-depenses])])
 
 (defn side-menu []
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
@@ -32,7 +33,8 @@
     [ant/menu-item {:key "eig2018"} "EIG 2018"]
     [ant/menu-item {:key "eig2019"} "EIG 2019"]]
    [ant/menu-item {:key "profils"} "Profils EIG"]
-   [ant/menu-item {:key "financement"} "Financement"]])
+   [ant/menu-item {:key "financement"} "Financement"]
+   [ant/menu-item {:key "depenses"} "Dépenses"]])
 
 (defn main-panel []
   [ant/locale-provider {:locale (ant/locales "fr_FR")}

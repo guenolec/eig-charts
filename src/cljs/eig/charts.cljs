@@ -230,3 +230,38 @@
     :display-name        "chartjs-component"
     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def depenses-keys
+  ["Part des salaires dans le coût total du programme"
+   "Part de la recherche dans le coût total du programme"
+   "Part du programme d'accompagnement dans le coût total du programme"])
+
+(def depenses-data
+  (into [] (vals (select-keys report/financement depenses-keys))))
+
+(defn depenses []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "pie"
+         :options {:title {:display "true" :text "Les dépenses du programme EIG, de 2017 (au centre) à 2019"}}
+         :data    {:labels   depenses-keys
+                   :datasets [{:data            (map #(nth % 2) depenses-data)
+                               :label           "2019"
+                               :backgroundColor [color/blue color/green color/orange]}
+                              {:data            (map second depenses-data)
+                               :label           "2018"
+                               :backgroundColor [color/blue color/green color/orange]}
+                              {:data            (map first depenses-data)
+                               :label           "2017"
+                               :backgroundColor [color/blue color/green color/orange]}
+                              ]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-depenses
+  []
+  (r/create-class
+   {:component-did-mount #(depenses)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
