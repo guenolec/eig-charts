@@ -18,6 +18,8 @@
      "promo"       [charts/chartjs-promo]
      "profils"     [charts/chartjs-profils]
      "eig2017"     [charts/chartjs-eig2017]
+     "eig2018"     [charts/chartjs-eig2018]
+     "eig2019"     [charts/chartjs-eig2019]
      "financement" [charts/chartjs-financement])])
 
 (defn side-menu []
@@ -25,7 +27,10 @@
              :on-click (fn [e] (re-frame/dispatch [::events/set-view! (.-key e)]))}
    [ant/menu-item {:key "carte"} "Carte"]
    [ant/menu-item {:key "promo"} "Promotions EIG"]
-   [ant/menu-item {:key "eig2017"} "EIG 2017"]
+   [ant/menu-sub-menu {:title "Salaires"}
+    [ant/menu-item {:key "eig2017"} "EIG 2017"]
+    [ant/menu-item {:key "eig2018"} "EIG 2018"]
+    [ant/menu-item {:key "eig2019"} "EIG 2019"]]
    [ant/menu-item {:key "profils"} "Profils EIG"]
    [ant/menu-item {:key "financement"} "Financement"]])
 

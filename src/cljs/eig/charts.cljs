@@ -136,24 +136,55 @@
                "Part des défis autofinancés dans le total des salaires"
                "Part prise en charge par les administrations en co-financement"])
 
+(def eig-parts
+  (vals (select-keys report/financement eig-keys)))
+
 (defn eig2017 []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "pie"
          :options {:title {:display "true" :text "EIG 2017"}}
          :data    {:labels   eig-keys
-                   :datasets [{:data            (map first (vals (select-keys
-                                                                  report/financement
-                                                                  eig-keys)))
+                   :datasets [{:data            (map first eig-parts)
                                :label           "EIG 1 - 2017"
-                               :backgroundColor [color/blue color/green color/orange]}
-                              ;; {:data            (map second (vals (select-keys
-                              ;;                                      report/financement
-                              ;;                                      eig-keys)))
-                              ;;  :label           "EIG 1 - 2018"
-                              ;;  :backgroundColor ["yellow" "red" "green"]}
-                              ]}}]
+                               :backgroundColor [color/blue color/green color/orange]}]}}]
     (js/Chart. context (clj->js chart-data))))
+
+(defn eig2018 []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "pie"
+         :options {:title {:display "true" :text "EIG 2018"}}
+         :data    {:labels   eig-keys
+                   :datasets [{:data            (map second eig-parts)
+                               :label           "EIG 2 - 2018"
+                               :backgroundColor [color/blue color/green color/orange]}]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn eig2019 []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "pie"
+         :options {:title {:display "true" :text "EIG 2019"}}
+         :data    {:labels   eig-keys
+                   :datasets [{:data            (map #(nth % 2) eig-parts)
+                               :label           "EIG 2 - 2019"
+                               :backgroundColor [color/blue color/green color/orange]}]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-eig2019
+  []
+  (r/create-class
+   {:component-did-mount #(eig2019)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
+(defn chartjs-eig2018
+  []
+  (r/create-class
+   {:component-did-mount #(eig2018)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
 (defn chartjs-eig2017
   []
