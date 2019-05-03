@@ -14,14 +14,17 @@
 (defn layout-content-view [view-name]
   [ant/layout-content {:class "content-area"}
    (case view-name
-     "carte"       [charts/chartjs-map]
-     "promo"       [charts/chartjs-promo]
-     "profils"     [charts/chartjs-profils]
-     "eig2017"     [charts/chartjs-eig2017]
-     "eig2018"     [charts/chartjs-eig2018]
-     "eig2019"     [charts/chartjs-eig2019]
-     "financement" [charts/chartjs-financement]
-     "depenses"    [charts/chartjs-depenses])])
+     "carte"          [charts/chartjs-map]
+     "promo"          [charts/chartjs-promo]
+     "profils"        [charts/chartjs-profils]
+     "eig2017"        [charts/chartjs-eig2017]
+     "eig2018"        [charts/chartjs-eig2018]
+     "eig2019"        [charts/chartjs-eig2019]
+     "financement"    [charts/chartjs-financement]
+     "depenses"       [charts/chartjs-depenses]
+     "accompagnement" [charts/chartjs-accompagnement]
+     ;; "communication"  [charts/chartjs-communication]
+     )])
 
 (defn side-menu []
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
@@ -34,7 +37,9 @@
     [ant/menu-item {:key "eig2019"} "EIG 2019"]]
    [ant/menu-item {:key "profils"} "Profils EIG"]
    [ant/menu-item {:key "financement"} "Financement"]
-   [ant/menu-item {:key "depenses"} "Dépenses"]])
+   [ant/menu-item {:key "depenses"} "Dépenses"]
+   [ant/menu-item {:key "accompagnement"} "Accompagnement"]
+   [ant/menu-item {:key "communication"} "Communication"]])
 
 (defn main-panel []
   [ant/locale-provider {:locale (ant/locales "fr_FR")}

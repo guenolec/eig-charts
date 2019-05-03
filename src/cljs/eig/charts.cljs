@@ -265,3 +265,42 @@
     :display-name        "chartjs-component"
     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def accompagnement-2017
+  (map #(get (val %) 0) report/accompagnement))
+(def accompagnement-2018
+  (map #(get (val %) 1) report/accompagnement))
+(def accompagnement-2019
+  (map #(get (val %) 2) report/accompagnement))
+(def accompagnement-totaux
+  (map (fn [a b c] (+ a b c))
+       accompagnement-2017 accompagnement-2018 accompagnement-2019))
+
+(defn accompagnement []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "bar"
+         :options {:title {:display "true" :text "Un programme d'accompagnement"}}
+         :data    {:labels   (keys report/accompagnement)
+                   :datasets [{:data            accompagnement-2017
+                               :label           "EIG 1 - 2017"
+                               :backgroundColor color/blue}
+                              {:data            accompagnement-2018
+                               :label           "EIG 2 - 2018"
+                               :backgroundColor color/green}
+                              {:data            accompagnement-2019
+                               :label           "EIG 3 - 2019"
+                               :backgroundColor color/orange}
+                              {:data            accompagnement-totaux
+                               :label           "Totaux"
+                               :backgroundColor color/grey}
+                              ]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-accompagnement
+  []
+  (r/create-class
+   {:component-did-mount #(accompagnement)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
