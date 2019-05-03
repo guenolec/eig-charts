@@ -26,9 +26,9 @@
                                          (vector (js/parseFloat lon)
                                                  (js/parseFloat lat))))
                           (str "<h2>" admin "</h2>"
-                               "<p>2017: " (or eig2017 0) " EIG </p>"
-                               "2018: " (or eig2018 0) " EIG </p>"
-                               "2019: " (or eig2019 0) " EIG </p>"))
+                               "<p>2017: " (or eig2017 0) " défi EIG </p>"
+                               "2018: " (or eig2018 0) " défi EIG </p>"
+                               "2019: " (or eig2019 0) " défi EIG </p>"))
               lmap))))
 
 (defn chartjs-map []
