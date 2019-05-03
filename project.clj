@@ -12,7 +12,9 @@
                  [re-frame "0.10.6"]
                  [reagent "0.8.1"]
                  [reagent-utils "0.3.2"]
-                 [cljsjs/chartjs "2.8.0-0"]]
+                 [cljsjs/chartjs "2.8.0-0"]
+                 [secretary "1.2.3"]
+                 [venantius/accountant "0.2.4"]]
   :target-path "target/%s"
   :resource-paths ["resources"]
   :plugins [[lein-cljsbuild "1.1.7"]]
