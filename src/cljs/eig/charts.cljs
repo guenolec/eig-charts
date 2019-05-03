@@ -162,3 +162,40 @@
     :display-name        "chartjs-component"
     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def profils-keys
+  ["Part des développeurs parmi les EIG"                
+   "Part des data scientists parmi les EIG"             
+   "Part des designers parmi les EIG"])
+
+(def profils-data
+  (into [] (vals (select-keys report/eig profils-keys))))
+
+(defn profils []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "bar"
+         :options {:title  {:display "true" :text "3 profils parmi les EIG"}
+                   :scales {:xAxes [{:stacked true}]
+                            :yAxes [{:stacked true}]}}
+         :data    {:labels   ["EIG 1 - 2017" "EIG 2 - 2018" "EIG 3 - 2019"]
+                   :datasets [{:data            (get profils-data 0)
+                               :label           "Développeurs"
+                               :backgroundColor color/blue}
+                              {:data            (get profils-data 1)
+                               :label           "Datascientistes"
+                               :backgroundColor color/green}
+                              {:data            (get profils-data 2)
+                               :label           "Designers"
+                               :backgroundColor color/orange}
+                              ]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-profils
+  []
+  (r/create-class
+   {:component-did-mount #(profils)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+

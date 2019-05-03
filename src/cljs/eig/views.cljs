@@ -16,6 +16,7 @@
    (case view-name
      "carte"       [charts/chartjs-map]
      "promo"       [charts/chartjs-promo]
+     "profils"     [charts/chartjs-profils]
      "eig2017"     [charts/chartjs-eig2017]
      "financement" [charts/chartjs-financement])])
 
@@ -25,6 +26,7 @@
    [ant/menu-item {:key "carte"} "Carte"]
    [ant/menu-item {:key "promo"} "Promotions EIG"]
    [ant/menu-item {:key "eig2017"} "EIG 2017"]
+   [ant/menu-item {:key "profils"} "Profils EIG"]
    [ant/menu-item {:key "financement"} "Financement"]])
 
 (defn main-panel []
