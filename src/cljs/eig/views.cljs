@@ -14,7 +14,6 @@
 (defn layout-content-view [view-name]
   [ant/layout-content {:class "content-area"}
    (case view-name
-     "test"        [charts/chartjs-test]
      "carte"       [charts/chartjs-map]
      "promo"       [charts/chartjs-promo]
      "eig2017"     [charts/chartjs-eig2017]
@@ -23,7 +22,6 @@
 (defn side-menu []
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
              :on-click (fn [e] (re-frame/dispatch [::events/set-view! (.-key e)]))}
-   [ant/menu-item {:key "test"} "Test"]
    [ant/menu-item {:key "carte"} "Carte"]
    [ant/menu-item {:key "promo"} "Promotions EIG"]
    [ant/menu-item {:key "eig2017"} "EIG 2017"]

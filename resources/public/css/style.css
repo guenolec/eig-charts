@@ -11,3 +11,11 @@ html, body {
 .content-area {
     background: #fff;
 }
+
+.ant-layout-sider-dark {
+    background-color: #26353f;
+}
+
+.ant-menu-item {
+    background-color: #26353f;
+}

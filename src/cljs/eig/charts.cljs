@@ -1,6 +1,7 @@
 (ns eig.charts
   (:require [reagent.core :as r]
             [eig.report :as report]
+            [eig.colors :as color]
             [cljsjs.chartjs]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -63,16 +64,16 @@
          :data    {:labels   financement-keys
                    :datasets [{:data            financement-2017
                                :label           "2017"
-                               :backgroundColor "#234567"}
+                               :backgroundColor color/blue}
                               {:data            financement-2018
                                :label           "2018"
-                               :backgroundColor "#245312"}
+                               :backgroundColor color/green}
                               {:data            financement-2019
                                :label           "2019"
-                               :backgroundColor "red"}
+                               :backgroundColor color/orange}
                               {:data            financement-total
                                :label           "Totaux"
-                               :backgroundColor "green"}
+                               :backgroundColor color/red}
                               ]}}]
     (js/Chart. context (clj->js chart-data))))
 
@@ -104,19 +105,19 @@
                                :label            "Nombre d'EIG"
                                :pointRadius      10
                                :pointHoverRadius 15
-                               :backgroundColor  "#234567"
+                               :backgroundColor  color/blue
                                :fill             "boundary"}
                               {:data             (conj (get report/programme "Nombre de mentors")
                                                        (get promotion-totaux 1))
                                :label            "Nombre de mentors"
                                :pointRadius      10
                                :pointHoverRadius 15
-                               :backgroundColor  "#245312"
+                               :backgroundColor  color/green
                                :fill             nil}
                               {:data             (conj (get report/programme "Nombre de défis")
                                                        (get promotion-totaux 2))
                                :label            "Nombre de défis"
-                               :backgroundColor  "red"
+                               :backgroundColor  color/orange
                                :pointRadius      10
                                :pointHoverRadius 15
                                :fill             nil}]}}]
@@ -145,7 +146,7 @@
                                                                   report/financement
                                                                   eig-keys)))
                                :label           "EIG 1 - 2017"
-                               :backgroundColor ["#234567" "#123445" "#652323"]}
+                               :backgroundColor [color/blue color/green color/orange]}
                               ;; {:data            (map second (vals (select-keys
                               ;;                                      report/financement
                               ;;                                      eig-keys)))
@@ -161,23 +162,3 @@
     :display-name        "chartjs-component"
     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn test-chart []
-  (let [context    (.getContext (.getElementById js/document "chartjs") "2d")
-        chart-data {:type "bar"
-                    :data {:labels   ["2017" "2018" "2019"]
-                           :datasets [{:data            [5 10 1]
-                                       :label           "This is something"
-                                       :backgroundColor "#234567"}
-                                      {:data            [3 6 9]
-                                       :label           "And something else entirely"
-                                       :backgroundColor "#245312"}]}}]
-    (js/Chart. context (clj->js chart-data))))
-
-(defn chartjs-test
-  []
-  (r/create-class
-   {:component-did-mount #(test-chart)
-    :display-name        "chartjs-component"
-    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 

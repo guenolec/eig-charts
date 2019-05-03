@@ -2,5 +2,5 @@
 
 (def default-db
   {:name "eig"
-   :view "test"})
+   :view "promo"})
 
