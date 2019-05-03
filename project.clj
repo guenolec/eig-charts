@@ -4,7 +4,6 @@
   :license {:name "Eclipse Public License - v 2.0"
             :url  "http://www.eclipse.org/legal/epl-v20.html"}
   :dependencies [[antizer "0.3.1"]
-                 [cljsjs/moment "2.24.0-0"]
                  [cljsjs/leaflet "1.4.0-0"]
                  [hiccup "1.0.5"]
                  [org.clojure/clojure "1.10.0"]
@@ -13,8 +12,6 @@
                  [re-frame "0.10.6"]
                  [reagent "0.8.1"]
                  [reagent-utils "0.3.2"]
-                 [secretary "1.2.3"]
-                 [venantius/accountant "0.2.4"]
                  [cljsjs/chartjs "2.8.0-0"]]
   :target-path "target/%s"
   ;; :main eig.server

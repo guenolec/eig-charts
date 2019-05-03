@@ -2,14 +2,11 @@
   (:require [re-frame.core :as re-frame]
             [reagent.core :as r]
             [eig.db :as db]
-            [accountant.core :as accountant]
             [antizer.reagent :as ant]
             [eig.subs :as subs]
             [eig.charts :as charts]
             [eig.report :as report]
-            [eig.events :as events]
-            [cljsjs.moment]
-            [cljsjs.moment.locale.fr]))
+            [eig.events :as events]))
 
 (defn layout-content-view [view-name]
   [ant/layout-content {:class "content-area"}
