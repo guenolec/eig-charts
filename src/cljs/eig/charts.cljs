@@ -304,3 +304,43 @@
    {:component-did-mount #(accompagnement)
     :display-name        "chartjs-component"
     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def communication-data
+  (select-keys report/communication
+               ["Articles dans la presse"
+                "Relais administratifs (numerique.gouv, modernisation.gouv …)"
+                "Blog Etalab"
+                "Articles sur le blog EIG"]))
+
+(def communication-2017
+  (map #(get (val %) 0) communication-data))
+(def communication-2018
+  (map #(get (val %) 1) communication-data))
+(def communication-2019
+  (map #(get (val %) 2) communication-data))
+
+(defn communication []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "bar"
+         :options {:title {:display "true" :text "Communication autour du programme"}}
+         :data    {:labels   (keys communication-data)
+                   :datasets [{:data            communication-2017
+                               :label           "EIG 1 - 2017"
+                               :backgroundColor color/blue}
+                              {:data            communication-2018
+                               :label           "EIG 2 - 2018"
+                               :backgroundColor color/green}
+                              {:data            communication-2019
+                               :label           "EIG 3 - 2019"
+                               :backgroundColor color/orange}]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-communication
+  []
+  (r/create-class
+   {:component-did-mount #(communication)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 

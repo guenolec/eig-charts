@@ -23,8 +23,7 @@
      "financement"    [charts/chartjs-financement]
      "depenses"       [charts/chartjs-depenses]
      "accompagnement" [charts/chartjs-accompagnement]
-     ;; "communication"  [charts/chartjs-communication]
-     )])
+     "communication"  [charts/chartjs-communication])])
 
 (defn side-menu []
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
