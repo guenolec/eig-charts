@@ -65,8 +65,7 @@
      [layout-content-view @(re-frame/subscribe [::subs/view])]
      [ant/layout-footer
       [:p
-       "Auteur: "
-       [:a {:href "https://entrepreneur-interet-general.etalab.gouv.fr/"} "Entrepreneur d'intérêt général"]
+       [:a {:href "https://entrepreneur-interet-general.etalab.gouv.fr/"} "Entrepreneurs d'intérêt général"]
        " - "
        [:a {:href "https://www.etalab.gouv.fr"} "Etalab"]
        " / "
