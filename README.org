@@ -1,3 +1,8 @@
+* Dépôt archivé
+
+Ce dépôt est archivé.  Pour accéder au dépôt actif, merci de vous
+rendre sur https://github.com/etalab/eig-charts.
+
 * Présentation du programme EIG
 
 Ce dépôt contient le code source pour l'affichage de figures à propos
