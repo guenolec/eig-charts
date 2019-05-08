@@ -44,7 +44,6 @@
 (defn side-menu []
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
              :on-click (fn [e] (accountant/navigate! (.-key e)))}
-   [ant/menu-item {:key "#a-propos"} "À propos"]
    [ant/menu-item {:key "#promo"} "Promotions EIG"]
    [ant/menu-sub-menu {:title "Salaires"}
     [ant/menu-item {:key "#eig2017"} "EIG 2017"]
@@ -55,7 +54,8 @@
    [ant/menu-item {:key "#depenses"} "Dépenses"]
    [ant/menu-item {:key "#accompagnement"} "Accompagnement"]
    [ant/menu-item {:key "#communication"} "Communication"]
-   [ant/menu-item {:key "#carte"} "Carte des défis"]])
+   [ant/menu-item {:key "#carte"} "Carte des défis"]
+   [ant/menu-item {:key "#a-propos"} "À propos"]])
 
 (defn main-panel []
   [ant/locale-provider {:locale (ant/locales "fr_FR")}
