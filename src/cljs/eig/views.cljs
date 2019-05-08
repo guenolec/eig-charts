@@ -9,9 +9,27 @@
             [eig.report :as report]
             [eig.events :as events]))
 
+(defn a-propos []
+  [:div {:style {:padding "2em"}}
+   [:h1 "Présentation des données"]
+   [:p "Ce site présente quelques données liées au programme "
+    [:a {:href "https://entrepreneur-interet-general.etalab.gouv.fr/"} "Entrepreneurs d'intérêt général."]]
+   [:p "Les données exposées ici sous forme de graphiques sont téléchargeables au format .ods."] ; FIXME
+   [:h1 "Code source et licence"]
+   [:p "Le code source de ce site est "
+    [:a {:href "http://github.com/etalab/eig-charts"} "public"] "."]
+   [:p "Si vous souhaitez corriger une erreur, merci de le signaler "
+    [:a {:href "http://github.com/etalab/eig-charts/issues"} "ici"] " ou par email."]
+   [:h1 "Contact"]
+   [:p "Pour toute question sur le code source de ce site, merci d'écrire à "
+    [:span.email "bastien.guerry AT data.gouv.fr"] "."]
+   [:p "Pour toute question sur son contenu site, merci d'écrire à "
+    [:span.email "entrepreneur-interet-general AT data.gouv.fr"] "."]])
+
 (defn layout-content-view [view-name]
   [ant/layout-content {:class "content-area"}
    (case view-name
+     "a-propos"       [a-propos]
      "carte"          [charts/chartjs-map]
      "promo"          [charts/chartjs-promo]
      "profils"        [charts/chartjs-profils]
@@ -26,6 +44,7 @@
 (defn side-menu []
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
              :on-click (fn [e] (accountant/navigate! (.-key e)))}
+   [ant/menu-item {:key "#a-propos"} "À propos"]
    [ant/menu-item {:key "#promo"} "Promotions EIG"]
    [ant/menu-sub-menu {:title "Salaires"}
     [ant/menu-item {:key "#eig2017"} "EIG 2017"]

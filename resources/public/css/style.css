@@ -3,8 +3,21 @@
     margin: auto;
 }
 
+.email {
+    font-family: Consolas, monospace;
+}
+
 .content-area {
     background: #fff;
+    font-size: 1.4em;
+}
+
+.content-area h1 {
+    margin: .5em 0;
+}
+
+.content-area p {
+    margin: .2em;
 }
 
 .ant-layout-sider-dark {
@@ -21,7 +34,7 @@ ant-menu-inline {
 }
 
 .ant-menu-inline .ant-menu-item {
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
 
 .ant-menu-inline .ant-menu-submenu-title {    

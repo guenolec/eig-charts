@@ -11,6 +11,8 @@
   (reagent/render [views/main-panel]
                   (.getElementById js/document "app")))
 
+(secretary/defroute "/#a-propos" []
+  (re-frame/dispatch [::events/set-view! "a-propos"]))
 (secretary/defroute "/#carte" []
   (re-frame/dispatch [::events/set-view! "carte"]))
 (secretary/defroute "/#promo" []
