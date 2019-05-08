@@ -66,7 +66,8 @@
         chart-data
         {:type    "bar"
          :options {:title      {:display "true" :text "Financement du programme EIG"}
-                   :responsive "true"}
+                   :responsive "true"
+                   :scales     {:yAxes [{:ticks {:callback (fn [v _ _] (str v "€"))}}]}}
          :data    {:labels   financement-keys
                    :datasets [{:data            financement-2017
                                :label           "2017"
