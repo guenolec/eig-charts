@@ -10,7 +10,10 @@
   [:div#map {:style {:height "700px"}}])
 
 (def admins_locations
-  (flatten (vals report/administrations_map)))
+  (flatten
+   (map (fn [[k v]]
+          (for [admin v] (conj admin {:tutelle k})))
+        report/administrations_map)))
 
 (defn map-did-mount []
   (let [lmap  (.setView (.map js/L "map") #js [48.8503 2.30831] 7)
@@ -21,11 +24,13 @@
                        "&copy; Openstreetmap France | &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
                        :maxZoom 18}))
             lmap)
-    (doseq [{:keys [lat lon admin eig2017 eig2018 eig2019]} items]
+    (doseq [{:keys [lat lon admin tutelle eig2017 eig2018 eig2019]} items]
       (.addTo (.bindPopup (.marker js/L (clj->js
                                          (vector (js/parseFloat lon)
                                                  (js/parseFloat lat))))
-                          (str "<h2>" admin "</h2>"
+                          (str "<h1>" tutelle "</h1>"
+                               (when-not (= admin tutelle)
+                                 (str "<h2>" admin "</h2><br/>"))
                                "<p>2017: " (or eig2017 0) " défi EIG </p>"
                                "2018: " (or eig2018 0) " défi EIG </p>"
                                "2019: " (or eig2019 0) " défi EIG </p>"))
