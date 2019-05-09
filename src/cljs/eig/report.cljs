@@ -67,7 +67,8 @@
    "Coût total du programme"                                                       [766553.38 2365342.00 2430364.09]
    "Part des salaires dans le coût total du programme"                             [98.70 81.82 86.42]   
    "Part de la recherche dans le coût total du programme"                          [1.30 1.27 1.23]   
-   "Part du programme d'accompagnement dans le coût total du programme"            [0.00 16.91 12.34]   
+   "Part du programme d'accompagnement dans le coût total du programme"            [0.00 16.91 12.34]
+   "Part de la communication dans le coût total du programme"                      [0 3.17 3.29]
    "Part des salaires pris en charge par le PIA"                                   [91.03 89.65 55.59]   
    "Part des défis autofinancés dans le total des salaires"                        [8.97 10.35 22.67]   
    "Part prise en charge par les administrations en co-financement"                [0.00 0.00 21.74]})
