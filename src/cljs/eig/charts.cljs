@@ -202,7 +202,7 @@
                    :scales     {:xAxes [{:stacked true}]
                                 :yAxes [{:stacked true
                                          :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
-         :data    {:labels   ["EIG 1 - 2017" "EIG 2 - 2018" "EIG 3 - 2019"]
+         :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get profils-data 0)
                                :label           "Développeurs"
                                :backgroundColor color/blue}
@@ -224,30 +224,25 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def depenses-keys
-  ["Part des salaires dans le coût total du programme"
-   "Part de la recherche dans le coût total du programme"
-   "Part du programme d'accompagnement dans le coût total du programme"])
-
-(def depenses-data
-  (into [] (vals (select-keys report/financement depenses-keys))))
-
 (defn depenses []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
-        {:type    "pie"
-         :options {:title      {:display "true" :text "Les dépenses du programme EIG, de 2017 (au centre) à 2019"}
-                   :responsive "true"}
-         :data    {:labels   depenses-keys
-                   :datasets [{:data            (map #(nth % 2) depenses-data)
-                               :label           "2019"
-                               :backgroundColor [color/blue color/green color/orange]}
-                              {:data            (map second depenses-data)
-                               :label           "2018"
-                               :backgroundColor [color/blue color/green color/orange]}
-                              {:data            (map first depenses-data)
-                               :label           "2017"
-                               :backgroundColor [color/blue color/green color/orange]}
+        {:type    "bar"
+         :options {:title      {:display "true" :text "Les dépenses du programme EIG"}
+                   :responsive "true"
+                   :scales     {:xAxes [{:stacked true}]
+                                :yAxes [{:stacked true
+                                         :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
+         :data    {:labels   ["2017" "2018" "2019"]
+                   :datasets [{:data            (get report/financement "Part des salaires dans le coût total du programme")
+                               :label           "Part des salaires dans le coût total du programme"
+                               :backgroundColor color/blue}
+                              {:data            (get report/financement "Part de la recherche dans le coût total du programme")
+                               :label           "Part de la recherche dans le coût total du programme"
+                               :backgroundColor color/green}
+                              {:data            (get report/financement "Part du programme d'accompagnement dans le coût total du programme")
+                               :label           "Part du programme d'accompagnement dans le coût total du programme"
+                               :backgroundColor color/orange}
                               ]}}]
     (js/Chart. context (clj->js chart-data))))
 
@@ -260,36 +255,24 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def accompagnement-2017
-  (map #(get (val %) 0) report/accompagnement))
-(def accompagnement-2018
-  (map #(get (val %) 1) report/accompagnement))
-(def accompagnement-2019
-  (map #(get (val %) 2) report/accompagnement))
-(def accompagnement-totaux
-  (map (fn [a b c] (+ a b c))
-       accompagnement-2017 accompagnement-2018 accompagnement-2019))
-
 (defn accompagnement []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
          :options {:title      {:display "true" :text "Un programme d'accompagnement"}
-                   :responsive "true"}
-         :data    {:labels   (keys report/accompagnement)
-                   :datasets [{:data            accompagnement-2017
-                               :label           "EIG 1 - 2017"
+                   :responsive "true"
+                   :scales     {:xAxes [{:stacked true}]
+                                :yAxes [{:stacked true}]}}
+         :data    {:labels   ["2017" "2018" "2019"]
+                   :datasets [{:data            (get report/accompagnement "Sessions d'accompagnement")
+                               :label           "Sessions d'accompagnement"
                                :backgroundColor color/blue}
-                              {:data            accompagnement-2018
-                               :label           "EIG 2 - 2018"
+                              {:data            (get report/accompagnement "Semaine de lancement de promotion")
+                               :label           "Semaine de lancement de promotion"
                                :backgroundColor color/green}
-                              {:data            accompagnement-2019
-                               :label           "EIG 3 - 2019"
-                               :backgroundColor color/orange}
-                              {:data            accompagnement-totaux
-                               :label           "Totaux"
-                               :backgroundColor color/dark-grey}
-                              ]}}]
+                              {:data            (get report/accompagnement "Sessions hors-les-murs")
+                               :label           "Sessions hors-les-murs"
+                               :backgroundColor color/orange}]}}]
     (js/Chart. context (clj->js chart-data))))
 
 (defn chartjs-accompagnement
@@ -301,36 +284,27 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def communication-data
-  (select-keys report/communication
-               ["Articles dans la presse"
-                "Relais administratifs (numerique.gouv, modernisation.gouv …)"
-                "Blog Etalab"
-                "Articles sur le blog EIG"]))
-
-(def communication-2017
-  (map #(get (val %) 0) communication-data))
-(def communication-2018
-  (map #(get (val %) 1) communication-data))
-(def communication-2019
-  (map #(get (val %) 2) communication-data))
-
 (defn communication []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
          :options {:title      {:display "true" :text "Communication autour du programme"}
-                   :responsive "true"}
-         :data    {:labels   (keys communication-data)
-                   :datasets [{:data            communication-2017
-                               :label           "EIG 1 - 2017"
+                   :responsive "true"
+                   :scales     {:xAxes [{:stacked true}]
+                                :yAxes [{:stacked true}]}}
+         :data    {:labels   ["2017" "2018" "2019"]
+                   :datasets [{:data            (get report/communication "Articles dans la presse")
+                               :label           "Articles dans la presse"
                                :backgroundColor color/blue}
-                              {:data            communication-2018
-                               :label           "EIG 2 - 2018"
+                              {:data            (get report/communication "Relais administratifs (numerique.gouv, modernisation.gouv …)")
+                               :label           "Relais administratifs (numerique.gouv, modernisation.gouv …)"
                                :backgroundColor color/green}
-                              {:data            communication-2019
-                               :label           "EIG 3 - 2019"
-                               :backgroundColor color/orange}]}}]
+                              {:data            (get report/communication "Blog Etalab")
+                               :label           "Blog Etalab"
+                               :backgroundColor color/orange}
+                              {:data            (get report/communication "Articles sur le blog EIG")
+                               :label           "Articles sur le blog EIG"
+                               :backgroundColor color/grey}]}}]
     (js/Chart. context (clj->js chart-data))))
 
 (defn chartjs-communication
