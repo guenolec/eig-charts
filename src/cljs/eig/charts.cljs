@@ -48,9 +48,7 @@
         {:type    "bar"
          :options {:title      {:display nil :text "Financement du programme EIG"}
                    :responsive "true"
-                   :scales     {:xAxes [{:stacked true}]
-                                :yAxes [{:stacked true
-                                         :ticks   {:callback (fn [v _ _] (str v "€"))}}]}}
+                   :scales     {:yAxes [{:ticks {:callback (fn [v _ _] (str v "€"))}}]}}
          :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get report/financement "Enveloppe maximale allouée par le PIA")
                                :label           "Enveloppe maximale allouée par le PIA"
@@ -310,9 +308,7 @@
         {:type    "bar"
          :options {:title      {:display nil :text "Proportion de femmes par type de compétences"}
                    :responsive "true"
-                   :scales     {:xAxes [{:stacked true}]
-                                :yAxes [{:stacked true
-                                         :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
+                   :scales     {:yAxes [{:ticks {:callback (fn [v _ _] (str v "%"))}}]}}
          :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get genres-data 0)
                                :label           "Pourcentage de femmes parmi les développeurs"
@@ -339,9 +335,7 @@
         chart-data
         {:type    "bar"
          :options {:title      {:display nil :text "Proportion de femmes par type de compétences"}
-                   :responsive "true"
-                   :scales     {:xAxes [{:stacked true}]
-                                :yAxes [{:stacked true}]}}
+                   :responsive "true"}
          :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get report/parcours "Sont restés dans la fonction publique")
                                :label           "Sont restés dans la fonction publique"
@@ -405,9 +399,7 @@
         chart-data
         {:type    "bar"
          :options {:title      {:display nil :text "Un programme d'accompagnement"}
-                   :responsive "true"
-                   :scales     {:xAxes [{:stacked true}]
-                                :yAxes [{:stacked true}]}}
+                   :responsive "true"}
          :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get report/accompagnement "Sessions d'accompagnement")
                                :label           "Sessions d'accompagnement"
@@ -440,16 +432,16 @@
          :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get report/communication "Articles dans la presse")
                                :label           "Articles dans la presse"
-                               :backgroundColor color/blue}
-                              {:data            (get report/communication "Relais administratifs (numerique.gouv, modernisation.gouv …)")
-                               :label           "Relais administratifs (numerique.gouv, modernisation.gouv …)"
                                :backgroundColor color/green}
-                              {:data            (get report/communication "Blog Etalab")
-                               :label           "Blog Etalab"
+                              {:data            (get report/communication "Relais administratifs (numerique.gouv, modernisation.gouv …)")
+                               :label           "Articles sur d'autres sites administratifs (numerique.gouv, modernisation.gouv …)"
                                :backgroundColor color/orange}
+                              {:data            (get report/communication "Blog Etalab")
+                               :label           "Articles sur le blog Etalab"
+                               :backgroundColor color/red}
                               {:data            (get report/communication "Articles sur le blog EIG")
                                :label           "Articles sur le blog EIG"
-                               :backgroundColor color/grey}]}}]
+                               :backgroundColor color/blue}]}}]
     (js/Chart. context (clj->js chart-data))))
 
 (defn chartjs-communication
