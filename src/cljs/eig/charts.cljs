@@ -46,7 +46,7 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title      {:display "true" :text "Financement du programme EIG"}
+         :options {:title      {:display nil :text "Financement du programme EIG"}
                    :responsive "true"
                    :scales     {:xAxes [{:stacked true}]
                                 :yAxes [{:stacked true
@@ -76,7 +76,7 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "line"
-         :options {:title      {:display "true" :text "3 promotions EIG"}
+         :options {:title      {:display nil :text "3 promotions EIG"}
                    :elements   {:line {:tension 0}}
                    :responsive "true"}
          :data    {:labels   ["2017" "2018" "2019"]
@@ -113,7 +113,7 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "line"
-         :options {:title      {:display "true" :text "Sélections des EIG"}
+         :options {:title      {:display nil :text "Sélections des EIG"}
                    :elements   {:line {:tension 0}}
                    :responsive "true"}
          :data    {:labels   ["2017" "2018" "2019"]
@@ -150,7 +150,7 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title      {:display "true" :text "Dépenses EIG"}
+         :options {:title      {:display nil :text "Dépenses EIG"}
                    :scales     {:xAxes [{:stacked true}]
                                 :yAxes [{:stacked true
                                          :ticks   {:callback (fn [v _ _] (str v "%"))}}]}
@@ -270,7 +270,7 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title      {:display "true" :text "3 types de compétences parmi les EIG"}
+         :options {:title      {:display nil :text "3 types de compétences parmi les EIG"}
                    :responsive "true"
                    :scales     {:xAxes [{:stacked true}]
                                 :yAxes [{:stacked true
@@ -308,7 +308,7 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title      {:display "true" :text "Proportion de femmes par type de compétences"}
+         :options {:title      {:display nil :text "Proportion de femmes par type de compétences"}
                    :responsive "true"
                    :scales     {:xAxes [{:stacked true}]
                                 :yAxes [{:stacked true
@@ -338,7 +338,7 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title      {:display "true" :text "Proportion de femmes par type de compétences"}
+         :options {:title      {:display nil :text "Proportion de femmes par type de compétences"}
                    :responsive "true"
                    :scales     {:xAxes [{:stacked true}]
                                 :yAxes [{:stacked true}]}}
@@ -404,7 +404,7 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title      {:display "true" :text "Un programme d'accompagnement"}
+         :options {:title      {:display nil :text "Un programme d'accompagnement"}
                    :responsive "true"
                    :scales     {:xAxes [{:stacked true}]
                                 :yAxes [{:stacked true}]}}
@@ -433,7 +433,7 @@
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title      {:display "true" :text "Communication autour du programme"}
+         :options {:title      {:display nil :text "Communication autour du programme"}
                    :responsive "true"
                    :scales     {:xAxes [{:stacked true}]
                                 :yAxes [{:stacked true}]}}
