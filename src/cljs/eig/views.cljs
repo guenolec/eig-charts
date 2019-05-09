@@ -26,23 +26,30 @@
    [:p "Pour toute question sur le code source de ce site, merci d'écrire à "
     [:span.email "bastien.guerry AT data.gouv.fr"] "."]])
 
+
+(defn layout-content-area-wrapper [title explanation component]
+  `[:div {:style {:padding ".2em 1em"}}
+    [:h1 ~title]
+    [:p ~explanation]
+    [~component]])
+
 (defn layout-content-view [view-name]
   [ant/layout-content {:class "content-area"}
    (case view-name
      "a-propos"       [a-propos]
-     "carte"          [charts/chartjs-map]
-     "promo"          [charts/chartjs-promo]
-     "selection"      [charts/chartjs-selection]
-     "competences"    [charts/chartjs-competences]
-     "genres"         [charts/chartjs-genres]
-     "parcours"       [charts/chartjs-parcours]
+     "carte"          (layout-content-area-wrapper "Carte des défis" "Explication optionnelle" charts/chartjs-map) 
+     "promo"          (layout-content-area-wrapper "Les promotions EIG" "Explication optionnelle" charts/chartjs-promo)
+     "selection"      (layout-content-area-wrapper "La sélection des EIG" "Explication optionnelle" charts/chartjs-selection)
+     "competences"    (layout-content-area-wrapper "Les compétences EIG" "Explication optionnelle" charts/chartjs-competences)
+     "genres"         (layout-content-area-wrapper "La répartition par genres" "Explication optionnelle" charts/chartjs-genres)
+     "parcours"       (layout-content-area-wrapper "Les parcours des EIG" "Explication optionnelle" charts/chartjs-parcours)
      ;; "eig2017"        [charts/chartjs-eig2017]
      ;; "eig2018"        [charts/chartjs-eig2018]
      ;; "eig2019"        [charts/chartjs-eig2019]
-     "financement"    [charts/chartjs-financement]
-     "depenses"       [charts/chartjs-depenses]
-     "accompagnement" [charts/chartjs-accompagnement]
-     "communication"  [charts/chartjs-communication])])
+     "financement"    (layout-content-area-wrapper "Le financement du programme EIG" "Explication optionnelle" charts/chartjs-financement)
+     "depenses"       (layout-content-area-wrapper "Les dépenses du programme EIG" "Explication optionnelle" charts/chartjs-depenses)
+     "accompagnement" (layout-content-area-wrapper "Le programme d'accompagnement" "Explication optionnelle" charts/chartjs-accompagnement)
+     "communication"  (layout-content-area-wrapper "La communication du programme EIG" "Explication optionnelle" charts/chartjs-communication))])
 
 (defn side-menu []
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}

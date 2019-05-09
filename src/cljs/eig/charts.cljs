@@ -7,7 +7,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn map-render []
-  [:div#map {:style {:height "700px"}}])
+  [:div#map {:style {:height "700px" :margin "20px 0px"}}])
 
 (def admins_locations
   (flatten
