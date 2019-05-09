@@ -304,8 +304,7 @@
          :options {:title      {:display "true" :text "Proportion de femmes par type de compétences"}
                    :responsive "true"
                    :scales     {:xAxes [{:stacked true}]
-                                :yAxes [{:stacked true
-                                         :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
+                                :yAxes [{:stacked true}]}}
          :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get report/parcours "Sont restés dans la fonction publique")
                                :label           "Sont restés dans la fonction publique"
