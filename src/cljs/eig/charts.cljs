@@ -51,13 +51,13 @@
                    :scales     {:yAxes [{:ticks {:callback (fn [v _ _] (str v "€"))}}]}}
          :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get report/financement "Enveloppe maximale allouée par le PIA")
-                               :label           "Enveloppe maximale allouée par le PIA"
+                               :label           "Enveloppe allouée par le PIA"
                                :backgroundColor color/blue}
                               {:data            (get report/financement "Salaires pris en charge par PIA")
-                               :label           "Salaires pris en charge par PIA"
+                               :label           "Salaires pris en charge par le financement PIA"
                                :backgroundColor color/green}
                               {:data            (get report/financement "Coût total salaires EIG")
-                               :label           "Coût total salaires EIG"
+                               :label           "Coût total des salaires des EIG"
                                :backgroundColor color/orange}]}}]
     (js/Chart. context (clj->js chart-data))))
 
@@ -275,13 +275,13 @@
                                          :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
          :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get competences-data 0)
-                               :label           "Développeurs"
+                               :label           "Pourcentage de développeurs au sein de la promotion"
                                :backgroundColor color/blue}
                               {:data            (get competences-data 1)
-                               :label           "Datascientistes"
+                               :label           "Pourcentage de Datascientistes au sein de la promotion"
                                :backgroundColor color/green}
                               {:data            (get competences-data 2)
-                               :label           "Designers"
+                               :label           "Pourcentage de Designers au sein de la promotion"
                                :backgroundColor color/orange}]}}]
     (js/Chart. context (clj->js chart-data))))
 
