@@ -275,13 +275,13 @@
                                          :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
          :data    {:labels   ["2017" "2018" "2019"]
                    :datasets [{:data            (get competences-data 0)
-                               :label           "Développeurs"
+                               :label           "Pourcentage de développeurs au sein de la promotion"
                                :backgroundColor color/blue}
                               {:data            (get competences-data 1)
-                               :label           "Datascientistes"
+                               :label           "Pourcentage de Datascientistes au sein de la promotion"
                                :backgroundColor color/green}
                               {:data            (get competences-data 2)
-                               :label           "Designers"
+                               :label           "Pourcentage de Designers au sein de la promotion"
                                :backgroundColor color/orange}]}}]
     (js/Chart. context (clj->js chart-data))))
 
