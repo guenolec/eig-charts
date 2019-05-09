@@ -221,7 +221,8 @@
          :options {:title      {:display "true" :text "3 profils parmi les EIG"}
                    :responsive "true"
                    :scales     {:xAxes [{:stacked true}]
-                                :yAxes [{:stacked true}]}}
+                                :yAxes [{:stacked true
+                                         :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
          :data    {:labels   ["EIG 1 - 2017" "EIG 2 - 2018" "EIG 3 - 2019"]
                    :datasets [{:data            (get profils-data 0)
                                :label           "Développeurs"
