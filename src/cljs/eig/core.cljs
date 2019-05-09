@@ -17,8 +17,12 @@
   (re-frame/dispatch [::events/set-view! "carte"]))
 (secretary/defroute "/#promo" []
   (re-frame/dispatch [::events/set-view! "promo"]))
-(secretary/defroute "/#profils" []
-  (re-frame/dispatch [::events/set-view! "profils"]))
+(secretary/defroute "/#competences" []
+  (re-frame/dispatch [::events/set-view! "competences"]))
+(secretary/defroute "/#genres" []
+  (re-frame/dispatch [::events/set-view! "genres"]))
+(secretary/defroute "/#parcours" []
+  (re-frame/dispatch [::events/set-view! "parcours"]))
 (secretary/defroute "/#eig2017" []
   (re-frame/dispatch [::events/set-view! "eig2017"]))
 (secretary/defroute "/#eig2018" []

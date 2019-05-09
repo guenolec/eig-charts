@@ -32,7 +32,9 @@
      "a-propos"       [a-propos]
      "carte"          [charts/chartjs-map]
      "promo"          [charts/chartjs-promo]
-     "profils"        [charts/chartjs-profils]
+     "competences"    [charts/chartjs-competences]
+     "genres"         [charts/chartjs-genres]
+     "parcours"       [charts/chartjs-parcours]
      "eig2017"        [charts/chartjs-eig2017]
      "eig2018"        [charts/chartjs-eig2018]
      "eig2019"        [charts/chartjs-eig2019]
@@ -45,11 +47,14 @@
   [ant/menu {:mode     "inline" :theme "dark" :style {:height "100%"}
              :on-click (fn [e] (accountant/navigate! (.-key e)))}
    [ant/menu-item {:key "#promo"} "Promotions EIG"]
-   [ant/menu-sub-menu {:title "Salaires"}
+   [ant/menu-sub-menu {:title "Dépenses"}
     [ant/menu-item {:key "#eig2017"} "EIG 2017"]
     [ant/menu-item {:key "#eig2018"} "EIG 2018"]
     [ant/menu-item {:key "#eig2019"} "EIG 2019"]]
-   [ant/menu-item {:key "#profils"} "Profils EIG"]
+   [ant/menu-sub-menu {:title "Profils EIG"}
+    [ant/menu-item {:key "#competences"} "Compétences"]
+    [ant/menu-item {:key "#genres"} "Genres"]
+    [ant/menu-item {:key "#parcours"} "Parcours"]]
    [ant/menu-item {:key "#financement"} "Financement"]
    [ant/menu-item {:key "#depenses"} "Dépenses"]
    [ant/menu-item {:key "#accompagnement"} "Accompagnement"]

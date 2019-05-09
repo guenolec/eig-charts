@@ -185,40 +185,113 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def profils-keys
+(def competences-keys
   ["Part des développeurs parmi les EIG"                
    "Part des data scientists parmi les EIG"             
    "Part des designers parmi les EIG"])
 
-(def profils-data
-  (into [] (vals (select-keys report/eig profils-keys))))
+(def competences-data
+  (into [] (vals (select-keys report/eig competences-keys))))
 
-(defn profils []
+(defn competences []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
-         :options {:title      {:display "true" :text "3 profils parmi les EIG"}
+         :options {:title      {:display "true" :text "3 types de compétences parmi les EIG"}
                    :responsive "true"
                    :scales     {:xAxes [{:stacked true}]
                                 :yAxes [{:stacked true
                                          :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
          :data    {:labels   ["2017" "2018" "2019"]
-                   :datasets [{:data            (get profils-data 0)
+                   :datasets [{:data            (get competences-data 0)
                                :label           "Développeurs"
                                :backgroundColor color/blue}
-                              {:data            (get profils-data 1)
+                              {:data            (get competences-data 1)
                                :label           "Datascientistes"
                                :backgroundColor color/green}
-                              {:data            (get profils-data 2)
+                              {:data            (get competences-data 2)
                                :label           "Designers"
-                               :backgroundColor color/orange}
-                              ]}}]
+                               :backgroundColor color/orange}]}}]
     (js/Chart. context (clj->js chart-data))))
 
-(defn chartjs-profils
+(defn chartjs-competences
   []
   (r/create-class
-   {:component-did-mount #(profils)
+   {:component-did-mount #(competences)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def genres-keys
+  ["Pourcentage de femmes parmi les développeurs"
+   "Pourcentage de femmes parmi les data scientists"
+   "Pourcentage de femmes parmi les designers"])
+
+(def genres-data
+  (into [] (vals (select-keys report/eig genres-keys))))
+
+(defn genres []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "bar"
+         :options {:title      {:display "true" :text "Proportion de femmes par type de compétences"}
+                   :responsive "true"
+                   :scales     {:xAxes [{:stacked true}]
+                                :yAxes [{:stacked true
+                                         :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
+         :data    {:labels   ["2017" "2018" "2019"]
+                   :datasets [{:data            (get genres-data 0)
+                               :label           "Pourcentage de femmes parmi les développeurs"
+                               :backgroundColor color/blue}
+                              {:data            (get genres-data 1)
+                               :label           "Pourcentage de femmes parmi les data scientists"
+                               :backgroundColor color/green}
+                              {:data            (get genres-data 2)
+                               :label           "Pourcentage de femmes parmi les designers"
+                               :backgroundColor color/orange}]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-genres
+  []
+  (r/create-class
+   {:component-did-mount #(genres)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn parcours []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "bar"
+         :options {:title      {:display "true" :text "Proportion de femmes par type de compétences"}
+                   :responsive "true"
+                   :scales     {:xAxes [{:stacked true}]
+                                :yAxes [{:stacked true
+                                         :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
+         :data    {:labels   ["2017" "2018" "2019"]
+                   :datasets [{:data            (get report/parcours "Sont restés dans la fonction publique")
+                               :label           "Sont restés dans la fonction publique"
+                               :backgroundColor color/blue}
+                              {:data            (get report/parcours "Sont partis en thèse")
+                               :label           "Sont partis en thèse"
+                               :backgroundColor color/green}
+                              {:data            (get report/parcours "Sont partis dans le privé")
+                               :label           "Sont partis dans le privé"
+                               :backgroundColor color/orange}
+                              {:data            (get report/parcours "Se sont mis en freelance/indépendant")
+                               :label           "Se sont mis en freelance/indépendant"
+                               :backgroundColor color/red}
+                              {:data            (get report/parcours "Autres")
+                               :label           "Autres"
+                               :backgroundColor color/grey}]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-parcours
+  []
+  (r/create-class
+   {:component-did-mount #(parcours)
     :display-name        "chartjs-component"
     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
