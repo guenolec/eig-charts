@@ -72,13 +72,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def promotion-totaux
-  (into
-   []
-   (map (fn [[a b c]] (+ a b c))
-        (vals (select-keys report/programme
-                           ["Nombre d'EIG" "Nombre de mentors" "Nombre de défis"])))))
-
 (defn promotion []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
@@ -86,23 +79,20 @@
          :options {:title      {:display "true" :text "3 promotions EIG"}
                    :elements   {:line {:tension 0}}
                    :responsive "true"}
-         :data    {:labels   ["2017" "2018" "2019" "Totaux"]
-                   :datasets [{:data             (conj (get report/programme "Nombre d'EIG")
-                                                       (get promotion-totaux 0))
+         :data    {:labels   ["2017" "2018" "2019"]
+                   :datasets [{:data             (get report/programme "Nombre d'EIG")
                                :label            "Nombre d'EIG"
                                :pointRadius      10
                                :pointHoverRadius 15
                                :backgroundColor  color/blue
                                :fill             "boundary"}
-                              {:data             (conj (get report/programme "Nombre de mentors")
-                                                       (get promotion-totaux 1))
+                              {:data             (get report/programme "Nombre de mentors")
                                :label            "Nombre de mentors"
                                :pointRadius      10
                                :pointHoverRadius 15
                                :backgroundColor  color/green
                                :fill             nil}
-                              {:data             (conj (get report/programme "Nombre de défis")
-                                                       (get promotion-totaux 2))
+                              {:data             (get report/programme "Nombre de défis")
                                :label            "Nombre de défis"
                                :backgroundColor  color/orange
                                :pointRadius      10
@@ -119,69 +109,115 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def eig-keys ["Part des salaires pris en charge par le PIA"
-               "Part des défis autofinancés dans le total des salaires"
-               "Part prise en charge par les administrations en co-financement"])
-
-(def eig-parts
-  (vals (select-keys report/financement eig-keys)))
-
-(defn eig2017 []
+(defn depenses []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
-        {:type    "pie"
-         :options {:title      {:display "true" :text "EIG 2017"}
+        {:type    "bar"
+         :options {:title      {:display "true" :text "Dépenses EIG"}
+                   :scales     {:xAxes [{:stacked true}]
+                                :yAxes [{:stacked true
+                                         :ticks   {:callback (fn [v _ _] (str v "%"))}}]}
                    :responsive "true"}
-         :data    {:labels   eig-keys
-                   :datasets [{:data            (map first eig-parts)
-                               :label           "EIG 1 - 2017"
-                               :backgroundColor [color/blue color/green color/orange]}]}}]
+         :data    {:labels   ["2017" "2018" "2019"]
+                   :datasets [{:data             (get report/financement "Part des salaires dans le coût total du programme")
+                               :label            "Part des salaires dans le coût total du programme"
+                               :pointRadius      10
+                               :pointHoverRadius 15
+                               :backgroundColor  color/blue
+                               :fill             "boundary"}
+                              {:data             (get report/financement "Part du programme d'accompagnement dans le coût total du programme")
+                               :label            "Part du programme d'accompagnement dans le coût total du programme"
+                               :pointRadius      10
+                               :pointHoverRadius 15
+                               :backgroundColor  color/green
+                               :fill             nil}
+                              {:data             (get report/financement "Part de la recherche dans le coût total du programme")
+                               :label            "Part de la recherche dans le coût total du programme"
+                               :backgroundColor  color/orange
+                               :pointRadius      10
+                               :pointHoverRadius 15
+                               :fill             nil}
+                              ;; {:data             (get report/financement "Part de la communication dans le coût total du programme")
+                              ;;  :label            "Part de la communication dans le coût total du programme"
+                              ;;  :backgroundColor  color/red
+                              ;;  :pointRadius      10
+                              ;;  :pointHoverRadius 15
+                              ;;  :fill             nil}
+                              ]}}]
     (js/Chart. context (clj->js chart-data))))
 
-(defn eig2018 []
-  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
-        chart-data
-        {:type    "pie"
-         :options {:title      {:display "true" :text "EIG 2018"}
-                   :responsive "true"}
-         :data    {:labels   eig-keys
-                   :datasets [{:data            (map second eig-parts)
-                               :label           "EIG 2 - 2018"
-                               :backgroundColor [color/blue color/green color/orange]}]}}]
-    (js/Chart. context (clj->js chart-data))))
-
-(defn eig2019 []
-  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
-        chart-data
-        {:type    "pie"
-         :options {:title      {:display "true" :text "EIG 2019"}
-                   :responsive "true"}
-         :data    {:labels   eig-keys
-                   :datasets [{:data            (map #(nth % 2) eig-parts)
-                               :label           "EIG 2 - 2019"
-                               :backgroundColor [color/blue color/green color/orange]}]}}]
-    (js/Chart. context (clj->js chart-data))))
-
-(defn chartjs-eig2019
+(defn chartjs-depenses
   []
   (r/create-class
-   {:component-did-mount #(eig2019)
+   {:component-did-mount #(depenses)
     :display-name        "chartjs-component"
     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
-(defn chartjs-eig2018
-  []
-  (r/create-class
-   {:component-did-mount #(eig2018)
-    :display-name        "chartjs-component"
-    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defn chartjs-eig2017
-  []
-  (r/create-class
-   {:component-did-mount #(eig2017)
-    :display-name        "chartjs-component"
-    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+;; (def eig-keys ["Part des salaires pris en charge par le PIA"
+;;                "Part des défis autofinancés dans le total des salaires"
+;;                "Part prise en charge par les administrations en co-financement"])
+
+;; (def eig-parts
+;;   (vals (select-keys report/financement eig-keys)))
+
+;; (defn eig2017 []
+;;   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+;;         chart-data
+;;         {:type    "pie"
+;;          :options {:title      {:display "true" :text "EIG 2017"}
+;;                    :responsive "true"}
+;;          :data    {:labels   eig-keys
+;;                    :datasets [{:data            (map first eig-parts)
+;;                                :label           "EIG 1 - 2017"
+;;                                :backgroundColor [color/blue color/green color/orange]}]}}]
+;;     (js/Chart. context (clj->js chart-data))))
+
+;; (defn eig2018 []
+;;   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+;;         chart-data
+;;         {:type    "pie"
+;;          :options {:title      {:display "true" :text "EIG 2018"}
+;;                    :responsive "true"}
+;;          :data    {:labels   eig-keys
+;;                    :datasets [{:data            (map second eig-parts)
+;;                                :label           "EIG 2 - 2018"
+;;                                :backgroundColor [color/blue color/green color/orange]}]}}]
+;;     (js/Chart. context (clj->js chart-data))))
+
+;; (defn eig2019 []
+;;   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+;;         chart-data
+;;         {:type    "pie"
+;;          :options {:title      {:display "true" :text "EIG 2019"}
+;;                    :responsive "true"}
+;;          :data    {:labels   eig-keys
+;;                    :datasets [{:data            (map #(nth % 2) eig-parts)
+;;                                :label           "EIG 2 - 2019"
+;;                                :backgroundColor [color/blue color/green color/orange]}]}}]
+;;     (js/Chart. context (clj->js chart-data))))
+
+;; (defn chartjs-eig2019
+;;   []
+;;   (r/create-class
+;;    {:component-did-mount #(eig2019)
+;;     :display-name        "chartjs-component"
+;;     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
+;; (defn chartjs-eig2018
+;;   []
+;;   (r/create-class
+;;    {:component-did-mount #(eig2018)
+;;     :display-name        "chartjs-component"
+;;     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
+;; (defn chartjs-eig2017
+;;   []
+;;   (r/create-class
+;;    {:component-did-mount #(eig2017)
+;;     :display-name        "chartjs-component"
+;;     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -297,34 +333,34 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defn depenses []
-  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
-        chart-data
-        {:type    "bar"
-         :options {:title      {:display "true" :text "Les dépenses du programme EIG"}
-                   :responsive "true"
-                   :scales     {:xAxes [{:stacked true}]
-                                :yAxes [{:stacked true
-                                         :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
-         :data    {:labels   ["2017" "2018" "2019"]
-                   :datasets [{:data            (get report/financement "Part des salaires dans le coût total du programme")
-                               :label           "Part des salaires dans le coût total du programme"
-                               :backgroundColor color/blue}
-                              {:data            (get report/financement "Part de la recherche dans le coût total du programme")
-                               :label           "Part de la recherche dans le coût total du programme"
-                               :backgroundColor color/green}
-                              {:data            (get report/financement "Part du programme d'accompagnement dans le coût total du programme")
-                               :label           "Part du programme d'accompagnement dans le coût total du programme"
-                               :backgroundColor color/orange}
-                              ]}}]
-    (js/Chart. context (clj->js chart-data))))
+;; (defn depenses []
+;;   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+;;         chart-data
+;;         {:type    "bar"
+;;          :options {:title      {:display "true" :text "Les dépenses du programme EIG"}
+;;                    :responsive "true"
+;;                    :scales     {:xAxes [{:stacked true}]
+;;                                 :yAxes [{:stacked true
+;;                                          :ticks   {:callback (fn [v _ _] (str v "%"))}}]}}
+;;          :data    {:labels   ["2017" "2018" "2019"]
+;;                    :datasets [{:data            (get report/financement "Part des salaires dans le coût total du programme")
+;;                                :label           "Part des salaires dans le coût total du programme"
+;;                                :backgroundColor color/blue}
+;;                               {:data            (get report/financement "Part de la recherche dans le coût total du programme")
+;;                                :label           "Part de la recherche dans le coût total du programme"
+;;                                :backgroundColor color/green}
+;;                               {:data            (get report/financement "Part du programme d'accompagnement dans le coût total du programme")
+;;                                :label           "Part du programme d'accompagnement dans le coût total du programme"
+;;                                :backgroundColor color/orange}
+;;                               ]}}]
+;;     (js/Chart. context (clj->js chart-data))))
 
-(defn chartjs-depenses
-  []
-  (r/create-class
-   {:component-did-mount #(depenses)
-    :display-name        "chartjs-component"
-    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+;; (defn chartjs-depenses
+;;   []
+;;   (r/create-class
+;;    {:component-did-mount #(depenses)
+;;     :display-name        "chartjs-component"
+;;     :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
