@@ -42,46 +42,25 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def financement-keys
-  ["Enveloppe maximale allouée par le PIA"
-   "Salaires pris en charge par PIA"
-   "Coût total salaires EIG"])
-
-(def financement-cout
-  (select-keys report/financement financement-keys))
-
-(def financement-2017
-  (map #(get (val %) 0) financement-cout))
-(def financement-2018
-  (map #(get (val %) 1) financement-cout))
-(def financement-2019
-  (map #(get (val %) 2) financement-cout))
-
-(def financement-total
-  (map (fn [a b c] (+ a b c))
-       financement-2017 financement-2018 financement-2019))
-
 (defn financement []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data
         {:type    "bar"
          :options {:title      {:display "true" :text "Financement du programme EIG"}
                    :responsive "true"
-                   :scales     {:yAxes [{:ticks {:callback (fn [v _ _] (str v "€"))}}]}}
-         :data    {:labels   financement-keys
-                   :datasets [{:data            financement-2017
-                               :label           "2017"
+                   :scales     {:xAxes [{:stacked true}]
+                                :yAxes [{:stacked true
+                                         :ticks   {:callback (fn [v _ _] (str v "€"))}}]}}
+         :data    {:labels   ["2017" "2018" "2019"]
+                   :datasets [{:data            (get report/financement "Enveloppe maximale allouée par le PIA")
+                               :label           "Enveloppe maximale allouée par le PIA"
                                :backgroundColor color/blue}
-                              {:data            financement-2018
-                               :label           "2018"
+                              {:data            (get report/financement "Salaires pris en charge par PIA")
+                               :label           "Salaires pris en charge par PIA"
                                :backgroundColor color/green}
-                              {:data            financement-2019
-                               :label           "2019"
-                               :backgroundColor color/orange}
-                              {:data            financement-total
-                               :label           "Totaux"
-                               :backgroundColor color/red}
-                              ]}}]
+                              {:data            (get report/financement "Coût total salaires EIG")
+                               :label           "Coût total salaires EIG"
+                               :backgroundColor color/orange}]}}]
     (js/Chart. context (clj->js chart-data))))
 
 (defn chartjs-financement
