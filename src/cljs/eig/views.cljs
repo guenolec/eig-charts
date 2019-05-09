@@ -39,15 +39,15 @@
      "a-propos"       [a-propos]
      "carte"          (layout-content-area-wrapper "Carte des défis" "Explication optionnelle" charts/chartjs-map) 
      "promo"          (layout-content-area-wrapper "Les promotions EIG" "Explication optionnelle" charts/chartjs-promo)
-     "selection"      (layout-content-area-wrapper "La sélection des EIG" "Explication optionnelle" charts/chartjs-selection)
-     "competences"    (layout-content-area-wrapper "Les compétences EIG" "Explication optionnelle" charts/chartjs-competences)
+     "selection"      (layout-content-area-wrapper "La sélection des EIG" "A la suite de l'appel à projets lancé vers les administrations, le processus de sélection des EIG est le suivant : les candidats déposent des dossiers, et passent devant un jury de sélection. A la suite de cela, les lauréats sont sélectionnés." charts/chartjs-selection)
+     "competences"    (layout-content-area-wrapper "Les compétences EIG" "Les EIG sont principalement divisés en 3 compétences majeures : développement, data science et design. La part des designers est d'ailleurs en hausse depuis la première promotion." charts/chartjs-competences)
      "genres"         (layout-content-area-wrapper "La répartition par genres" "Explication optionnelle" charts/chartjs-genres)
-     "parcours"       (layout-content-area-wrapper "Les parcours des EIG" "Explication optionnelle" charts/chartjs-parcours)
+     "parcours"       (layout-content-area-wrapper "Les parcours des EIG" "Après une expérience EIG, près de 50% d'entre eux souhaitent ont poursuivi, sous différentes formes, leurs parcours dans l'administration" charts/chartjs-parcours)
      ;; "eig2017"        [charts/chartjs-eig2017]
      ;; "eig2018"        [charts/chartjs-eig2018]
      ;; "eig2019"        [charts/chartjs-eig2019]
      "financement"    (layout-content-area-wrapper "Le financement du programme EIG" "Explication optionnelle" charts/chartjs-financement)
-     "depenses"       (layout-content-area-wrapper "Les dépenses du programme EIG" "Explication optionnelle" charts/chartjs-depenses)
+     "depenses"       (layout-content-area-wrapper "Les dépenses du programme EIG" "Les salaires des EIG restent le principal poste de dépenses du programme, suivi par le programme d'accompagnement, les dépenses de communication et les liens avec la recherche." charts/chartjs-depenses)
      "accompagnement" (layout-content-area-wrapper "Le programme d'accompagnement" "Explication optionnelle" charts/chartjs-accompagnement)
      "communication"  (layout-content-area-wrapper "La communication du programme EIG" "Explication optionnelle" charts/chartjs-communication))])
 
