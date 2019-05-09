@@ -17,6 +17,8 @@
   (re-frame/dispatch [::events/set-view! "carte"]))
 (secretary/defroute "/#promo" []
   (re-frame/dispatch [::events/set-view! "promo"]))
+(secretary/defroute "/#selection" []
+  (re-frame/dispatch [::events/set-view! "selection"]))
 (secretary/defroute "/#competences" []
   (re-frame/dispatch [::events/set-view! "competences"]))
 (secretary/defroute "/#genres" []

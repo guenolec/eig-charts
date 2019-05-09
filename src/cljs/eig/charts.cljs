@@ -109,6 +109,43 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defn selection []
+  (let [context (.getContext (.getElementById js/document "chartjs") "2d")
+        chart-data
+        {:type    "line"
+         :options {:title      {:display "true" :text "Sélections des EIG"}
+                   :elements   {:line {:tension 0}}
+                   :responsive "true"}
+         :data    {:labels   ["2017" "2018" "2019"]
+                   :datasets [{:data             (get report/selection_des_candidats "Candidats")
+                               :label            "Candidats"
+                               :pointRadius      10
+                               :pointHoverRadius 15
+                               :backgroundColor  color/orange
+                               :fill             "boundary"}
+                              {:data             (get report/selection_des_candidats "Passages devant un jury")
+                               :label            "Passages devant un jury"
+                               :pointRadius      10
+                               :pointHoverRadius 15
+                               :backgroundColor  color/blue
+                               :fill             nil}
+                              {:data             (get report/selection_des_candidats "Lauréats")
+                               :label            "Lauréats"
+                               :backgroundColor  color/green
+                               :pointRadius      10
+                               :pointHoverRadius 15
+                               :fill             nil}]}}]
+    (js/Chart. context (clj->js chart-data))))
+
+(defn chartjs-selection
+  []
+  (r/create-class
+   {:component-did-mount #(selection)
+    :display-name        "chartjs-component"
+    :reagent-render      (fn [] [:canvas {:id "chartjs"}])})) 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defn depenses []
   (let [context (.getContext (.getElementById js/document "chartjs") "2d")
         chart-data

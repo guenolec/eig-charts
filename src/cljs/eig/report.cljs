@@ -112,7 +112,7 @@
 (def selection_des_candidats
   {"Candidats"                                                           [115 208 170]
    "Passages devant un jury"                                             [30 84 86]
-   "Reçus"                                                               [11 28 32]
+   "Lauréats"                                                            [11 28 32]
    "Moyenne d'âge"                                                       [31 30 27]
    "Taux de candidatures féminines"                                      [12 30 20]
    "Part des candidats passés devant un jury sur le total des candidats" [26 40 51]

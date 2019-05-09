@@ -21,10 +21,10 @@
    [:p "Si vous souhaitez corriger une erreur, merci de le signaler "
     [:a {:href "http://github.com/etalab/eig-charts/issues"} "ici"] " ou par email."]
    [:h1 "Contact"]
-   [:p "Pour toute question sur le code source de ce site, merci d'écrire à "
-    [:span.email "bastien.guerry AT data.gouv.fr"] "."]
    [:p "Pour toute question sur son contenu site, merci d'écrire à "
-    [:span.email "entrepreneur-interet-general AT data.gouv.fr"] "."]])
+    [:span.email "entrepreneur-interet-general AT data.gouv.fr"] "."]
+   [:p "Pour toute question sur le code source de ce site, merci d'écrire à "
+    [:span.email "bastien.guerry AT data.gouv.fr"] "."]])
 
 (defn layout-content-view [view-name]
   [ant/layout-content {:class "content-area"}
@@ -32,6 +32,7 @@
      "a-propos"       [a-propos]
      "carte"          [charts/chartjs-map]
      "promo"          [charts/chartjs-promo]
+     "selection"      [charts/chartjs-selection]
      "competences"    [charts/chartjs-competences]
      "genres"         [charts/chartjs-genres]
      "parcours"       [charts/chartjs-parcours]
@@ -51,6 +52,7 @@
    ;;  [ant/menu-item {:key "#eig2017"} "EIG 2017"]
    ;;  [ant/menu-item {:key "#eig2018"} "EIG 2018"]
    ;;  [ant/menu-item {:key "#eig2019"} "EIG 2019"]]
+   [ant/menu-item {:key "#selection"} "Sélection"]
    [ant/menu-sub-menu {:title "Profils EIG"}
     [ant/menu-item {:key "#competences"} "Compétences"]
     [ant/menu-item {:key "#genres"} "Genres"]
